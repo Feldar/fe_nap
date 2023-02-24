@@ -17,16 +17,15 @@ export const UserList = () => {
           tertiaryText={(record) => record.email}
         />
       ) : (
-        <Datagrid rowClick="edit">
+        <Datagrid bulkActionButtons={false}>
           <TextField source="id" />
-          <ReferenceField source="entrenador" reference="entrenadores"/>
           <TextField source="name" />
           <TextField source="username" />
           <EmailField source="email" />
-          <TextField source="address.street" />
           <TextField source="phone" />
-          <TextField source="website" />
-          <TextField source="company.name" />
+          <ReferenceField source="entrenador" reference="entrenadores">
+            <TextField source="name" />
+          </ReferenceField>
         </Datagrid>
       )}
     </List>

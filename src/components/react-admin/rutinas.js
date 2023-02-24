@@ -1,22 +1,24 @@
 import {
-    List,
-    SimpleList,
-    Datagrid,
-    TextField,
-    ReferenceField,
-    EditButton,
-    Edit,
-    Create,
-    SimpleForm,
-    ReferenceInput,
-    TextInput
-  } from 'react-admin';
+  List,
+  SimpleList,
+  Datagrid,
+  TextField,
+  ReferenceField,
+  EditButton,
+  Edit,
+  Create,
+  SimpleForm,
+  ReferenceInput,
+  TextInput,
+  AutocompleteInput,
+  Resource
+} from 'react-admin';
 
-import { useRecordContext} from 'react-admin';
+import { useRecordContext } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
 
 const rutinaFilters = [
-    <TextInput source="q" label="Search" alwaysOn />
+  <TextInput source="q" label="Search" alwaysOn />
 ];
 
 export const RutinaList = () => {
@@ -32,12 +34,13 @@ export const RutinaList = () => {
           <EditButton />
         </SimpleList>
       ) : (
-        <Datagrid bulkActionButtons={false}>
-          <ReferenceField source="ejercicio_id" reference="ejercicios" />
-          <ReferenceField source="entrenador_id" reference="entrenadores" />
+        <Datagrid bulkActionButtons={false} rowClick="edit">
           <TextField source="name" />
-          <TextField source="descripcion" />
           <TextField source="meta" />
+          <TextField source="descripcion" />
+          <ReferenceField source="entrenador_id" reference="entrenadores">
+            <TextField source="name" />
+          </ReferenceField>
           <EditButton />
         </Datagrid>
       )}
@@ -51,26 +54,30 @@ const RutinaTitle = () => {
 };
 
 export const RutinaEdit = () => (
-    <Edit title={<RutinaTitle />}>
+  <Edit title={<RutinaTitle />}>
     <SimpleForm>
-        <TextInput source="id" disabled />
-          <ReferenceInput source="entrenador_id" reference="entrenadores"/>
-          <ReferenceInput source="ejercicio_id" reference="ejercicios"/>
-          <TextInput source="name" />
-          <TextInput source="descripcion" />
-          <TextInput source="meta" />
+      <TextInput source="id" disabled />
+      <Resource name="entrenadores" recordRepresentation="name" />
+      <ReferenceInput source="entrenador_id" reference="entrenadores">
+        <AutocompleteInput optionText="name" />
+      </ReferenceInput>
+      <TextInput source="name" />
+      <TextInput source="meta" />
+      <TextInput source="descripcion" />
     </SimpleForm>
-    </Edit>
+  </Edit>
 );
 
 export const RutinaCreate = () => (
-    <Create>
-        <SimpleForm>
-          <ReferenceInput source="entrenador_id" reference="entrenadores" />
-          <ReferenceInput source="ejercicio_id" reference="ejercicios" />
-          <TextInput source="name" />
-          <TextInput source="descripcion" />
-          <TextInput source="meta" />
-        </SimpleForm>
-    </Create>
-    );
+  <Create>
+    <SimpleForm>
+      <Resource name="entrenadores" recordRepresentation="name" />
+      <ReferenceInput source="entrenador_id" reference="entrenadores">
+        <AutocompleteInput optionText="name" />
+      </ReferenceInput>
+      <TextInput source="name" />
+      <TextInput source="meta" />
+      <TextInput source="descripcion" />
+    </SimpleForm>
+  </Create>
+);

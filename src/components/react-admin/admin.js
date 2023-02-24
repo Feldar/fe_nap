@@ -7,7 +7,7 @@ import { default as AuthProvider } from 'components/react-admin/authProvider';
 import { default as Login } from 'pages/login';
 import { useState } from 'react';
 
-import { UserList } from 'components/react-admin/users';
+import { UserList} from 'components/react-admin/users';
 import { CustomerList, CustomerEdit, CustomerCreate } from 'components/react-admin/customers';
 import { RutinaList, RutinaEdit, RutinaCreate } from 'components/react-admin/rutinas';
 import { EjercicioList, EjercicioEdit, EjercicioCreate } from 'components/react-admin/ejercicios';
@@ -18,18 +18,18 @@ import { RecipeList } from 'components/react-admin/recipes';
 import CustomerIcon from '@mui/icons-material/SupportAgent';
 import RutinaIcon from '@mui/icons-material/PunchClock'
 import UserIcon from '@mui/icons-material/Group';
-import RecipeIcon from '@mui/icons-material/LocalDining'; 
+import RecipeIcon from '@mui/icons-material/LocalDining';
 import EjercicioIcon from '@mui/icons-material/FitnessCenter';
 import LugarIcon from '@mui/icons-material/Place';
 import EntrenadorIcon from '@mui/icons-material/Person';
 
-import { AdminLayout } from 'components/react-admin/adminLayout';
+//import { AdminLayout } from 'components/react-admin/adminLayout';
 
 //Para php crud api
 //const dataProvider = jsonServerProvider('http://encuentro.test/api/records');
 
 //Para Laravel Controllers
-const dataProvider = jsonapiClient('http://encuentro.test/api');
+//const dataProvider = jsonapiClient('http://encuentro.test/api');
 
 const RAdmin = () => {
   function handleDataProvider(dataProvider) {
@@ -41,46 +41,46 @@ const RAdmin = () => {
   const [dataProvider, setDataProvider] = useState(null)
 
   if (!dataProvider) {
-   // handleDataProvider(jsonapiClient(API_URL))
+    // handleDataProvider(jsonapiClient(API_URL))
     let auth = JSON.parse(localStorage.getItem('auth'))
     let settings = {}
-        if(auth) {
-          settings = {
-            headers : {
-              Authorization: `${auth.token_type} ${auth.access_token}`,
-              'X-Requested-With': 'XMLHttpRequest'
-            }
-          }
+    if (auth) {
+      settings = {
+        headers: {
+          Authorization: `${auth.token_type} ${auth.access_token}`,
+          'X-Requested-With': 'XMLHttpRequest'
         }
-        handleDataProvider(jsonapiClient(API_URL, settings))
+      }
     }
-          
+    handleDataProvider(jsonapiClient(API_URL, settings))
+  }
+
   return (
-  <Admin
-    basename="/dashboard"
-    dataProvider={dataProvider}
-    authProvider={AuthProvider}
-    loginPage={myLogin}
-  >
-   <Resource name="customers"
-    list={CustomerList} icon={CustomerIcon} edit={CustomerEdit} create={CustomerCreate} />
+    <Admin
+      basename="/dashboard"
+      dataProvider={dataProvider}
+      authProvider={AuthProvider}
+      loginPage={myLogin}
+    >
+      <Resource name="recipes" list={RecipeList} icon={RecipeIcon} />
 
-    <Resource name="rutinas"
-    list={RutinaList} icon={RutinaIcon} edit={RutinaEdit} create={RutinaCreate} />
+      <Resource name="lugares"
+        list={LugarList} icon={LugarIcon} edit={LugarEdit} create={LugarCreate} />
 
-    <Resource name="ejercicios"
-    list={EjercicioList} icon={EjercicioIcon} edit={EjercicioEdit} create={EjercicioCreate} />
+      <Resource name="entrenadores"
+        list={EntrenadorList} icon={EntrenadorIcon} edit={EntrenadorEdit} create={EntrenadorCreate} />
 
-    <Resource name="lugares"
-    list={LugarList} icon={LugarIcon} edit={LugarEdit} create={LugarCreate} />
+      <Resource name="ejercicios"
+        list={EjercicioList} icon={EjercicioIcon} edit={EjercicioEdit} create={EjercicioCreate} />
 
-    <Resource name="entrenadores"
-    list={EntrenadorList} icon={EntrenadorIcon} edit={EntrenadorEdit} create={EntrenadorCreate} />
+      <Resource name="rutinas"
+        list={RutinaList} icon={RutinaIcon} edit={RutinaEdit} create={RutinaCreate} />
 
-   <Resource name="recipes" list={RecipeList} icon={RecipeIcon} />
+      <Resource name="users" list={UserList} icon={UserIcon} />
 
-    <Resource name="users" list={UserList} icon={UserIcon} recordRepresentation="name" />
-  </Admin>
+      <Resource name="customers"
+        list={CustomerList} icon={CustomerIcon} edit={CustomerEdit} create={CustomerCreate} />
+    </Admin>
   )
 }
 

@@ -1,23 +1,21 @@
 import {
-    List,
-    SimpleList,
-    Datagrid,
-    TextField,
-    ReferenceField,
-    EditButton,
-    Edit,
-    Create,
-    SimpleForm,
-    ReferenceInput,
-    TextInput,
-    ImageField
-  } from 'react-admin';
+  List,
+  SimpleList,
+  Datagrid,
+  TextField,
+  EditButton,
+  Edit,
+  Create,
+  SimpleForm,
+  TextInput,
+  ImageField
+} from 'react-admin';
 
-import { useRecordContext} from 'react-admin';
+import { useRecordContext } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
 
 const entrenadorFilters = [
-    <TextInput source="q" label="Search" alwaysOn />
+  <TextInput source="q" label="Search" alwaysOn />
 ];
 
 export const EntrenadorList = () => {
@@ -34,9 +32,9 @@ export const EntrenadorList = () => {
           <EditButton />
         </SimpleList>
       ) : (
-        <Datagrid bulkActionButtons={false}>
+        <Datagrid bulkActionButtons={false} rowClick="edit">
+          <ImageField source="imagen" />
           <TextField source="name" />
-          <ImageField source="imagen"/>
           <TextField source="email" />
           <TextField source="ciudad" />
           <TextField source="pais" />
@@ -55,30 +53,30 @@ const EntrenadorTitle = () => {
 };
 
 export const EntrenadorEdit = () => (
-    <Edit title={<EntrenadorTitle />}>
+  <Edit title={<EntrenadorTitle />}>
     <SimpleForm>
-        <TextInput source="id" disabled />
-          <TextInput source="name" />
-          <ImageField source="imagen" />
-          <TextInput source="email" />
-          <TextInput source="ciudad" />
-          <TextInput source="pais" />
-          <TextInput source="sexo" />
-          <TextInput source="telefono" />
+      <TextInput source="id" disabled />
+      <ImageField source="imagen" />
+      <TextInput source="name" />
+      <TextInput source="email" />
+      <TextInput source="ciudad" />
+      <TextInput source="pais" />
+      <TextInput source="sexo" />
+      <TextInput source="telefono" />
     </SimpleForm>
-    </Edit>
+  </Edit>
 );
 
 export const EntrenadorCreate = () => (
-    <Create>
-        <SimpleForm>
-        <TextInput source="name" />
-          <ImageField source="imagen" />
-          <TextInput source="email" />
-          <TextInput source="ciudad" />
-          <TextInput source="pais" />
-          <TextInput source="sexo" />
-          <TextInput source="telefono" />
-        </SimpleForm>
-    </Create>
-    );
+  <Create>
+    <SimpleForm>
+      <ImageField source="imagen" />
+      <TextInput source="name" />
+      <TextInput source="email" />
+      <TextInput source="ciudad" />
+      <TextInput source="pais" />
+      <TextInput source="sexo" />
+      <TextInput source="telefono" />
+    </SimpleForm>
+  </Create>
+);
