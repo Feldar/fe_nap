@@ -1,20 +1,17 @@
 // in src/components/react-admin/recipes.js
 import {
-    List,
-    SimpleList,
-    Datagrid,
-    TextField,
-    ReferenceField,
-    TextInput,
-    ImageField,
-    SelectField
-  } from 'react-admin';
+  List,
+  SimpleList,
+  Datagrid,
+  TextField,
+  TextInput,
+  ImageField
+} from 'react-admin';
 
-import { useRecordContext} from 'react-admin';
 import { useMediaQuery } from '@mui/material';
 
 const recipeFilters = [
-    <TextInput source="q" label="Search" alwaysOn />
+  <TextInput source="q" label="Search" alwaysOn />
 ];
 
 export const RecipeList = () => {

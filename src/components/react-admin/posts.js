@@ -1,34 +1,34 @@
 // in src/components/react-admin/posts.tsx
 import {
-    List,
-    Datagrid,
-    TextField,
-    ReferenceField,
-    EditButton,
-    Edit,
-    Create,
-    SimpleForm,
-    ReferenceInput,
-    TextInput
-  } from 'react-admin';
+  List,
+  Datagrid,
+  TextField,
+  ReferenceField,
+  EditButton,
+  Edit,
+  Create,
+  SimpleForm,
+  ReferenceInput,
+  TextInput
+} from 'react-admin';
 
-import { useRecordContext} from 'react-admin';
+import { useRecordContext } from 'react-admin';
 
 const postFilters = [
-    <TextInput source="q" label="Search" alwaysOn />,
-    <ReferenceInput source="userId" label="User" reference="users" />
+  <TextInput source="q" label="Search" alwaysOn />,
+  <ReferenceInput source="userId" label="User" reference="users" />
 ];
 
 export const PostList = () => (
-    <List filters={postFilters} >
-      <Datagrid>
-        <TextField source="id" />
-        <ReferenceField source="userId" reference="users" />
-        <TextField source="title" />
-        <EditButton />
-      </Datagrid>
-    </List>
-  );
+  <List filters={postFilters} >
+    <Datagrid>
+      <TextField source="id" />
+      <ReferenceField source="userId" reference="users" />
+      <TextField source="title" />
+      <EditButton />
+    </Datagrid>
+  </List>
+);
 
 const PostTitle = () => {
   const record = useRecordContext();
@@ -36,22 +36,22 @@ const PostTitle = () => {
 };
 
 export const PostEdit = () => (
-    <Edit title={<PostTitle />}>
+  <Edit title={<PostTitle />}>
     <SimpleForm>
-        <TextInput source="id" disabled />
-        <ReferenceInput source="userId" reference="users" />
-        <TextInput source="title" />
-        <TextInput source="body" multiline rows={5} />
+      <TextInput source="id" disabled />
+      <ReferenceInput source="userId" reference="users" />
+      <TextInput source="title" />
+      <TextInput source="body" multiline rows={5} />
     </SimpleForm>
-    </Edit>
+  </Edit>
 );
 
 export const PostCreate = () => (
-    <Create>
-        <SimpleForm>
-        <ReferenceInput source="userId" reference="users" />
-        <TextInput source="title" />
-        <TextInput source="body" multiline rows={5} />
-        </SimpleForm>
-    </Create>
-    );
+  <Create>
+    <SimpleForm>
+      <ReferenceInput source="userId" reference="users" />
+      <TextInput source="title" />
+      <TextInput source="body" multiline rows={5} />
+    </SimpleForm>
+  </Create>
+);

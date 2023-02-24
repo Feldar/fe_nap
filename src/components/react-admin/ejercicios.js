@@ -1,22 +1,20 @@
 import {
-    List,
-    SimpleList,
-    Datagrid,
-    TextField,
-    ReferenceField,
-    EditButton,
-    Edit,
-    Create,
-    SimpleForm,
-    ReferenceInput,
-    TextInput
-  } from 'react-admin';
+  List,
+  SimpleList,
+  Datagrid,
+  TextField,
+  EditButton,
+  Edit,
+  Create,
+  SimpleForm,
+  TextInput
+} from 'react-admin';
 
-import { useRecordContext} from 'react-admin';
+import { useRecordContext } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
 
 const ejercicioFilters = [
-    <TextInput source="q" label="Search" alwaysOn />
+  <TextInput source="q" label="Search" alwaysOn />
 ];
 
 export const EjercicioList = () => {
@@ -32,11 +30,11 @@ export const EjercicioList = () => {
           <EditButton />
         </SimpleList>
       ) : (
-        <Datagrid bulkActionButtons={false}>
+        <Datagrid bulkActionButtons={false} rowClick="edit">
           <TextField source="name" />
+          <TextField source="categoria" />
           <TextField source="repeticiones" />
           <TextField source="sets" />
-          <TextField source="categoria" />
           <EditButton />
         </Datagrid>
       )}
@@ -50,24 +48,24 @@ const EjercicioTitle = () => {
 };
 
 export const EjercicioEdit = () => (
-    <Edit title={<EjercicioTitle />}>
+  <Edit title={<EjercicioTitle />}>
     <SimpleForm>
-        <TextInput source="id" disabled />
-          <TextInput source="name" />
-          <TextInput source="repeticiones" />
-          <TextInput source="sets" />
-          <TextInput source="categoria" />
+      <TextInput source="id" disabled />
+      <TextInput source="name" />
+      <TextInput source="categoria" />
+      <TextInput source="repeticiones" />
+      <TextInput source="sets" />
     </SimpleForm>
-    </Edit>
+  </Edit>
 );
 
 export const EjercicioCreate = () => (
-    <Create>
-        <SimpleForm>
-          <TextInput source="name" />
-          <TextInput source="repeticiones" />
-          <TextInput source="sets" />
-          <TextInput source="categoria" />
-        </SimpleForm>
-    </Create>
-    );
+  <Create>
+    <SimpleForm>
+      <TextInput source="name" />
+      <TextInput source="categoria" />
+      <TextInput source="repeticiones" />
+      <TextInput source="sets" />
+    </SimpleForm>
+  </Create>
+);

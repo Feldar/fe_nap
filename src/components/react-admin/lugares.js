@@ -1,23 +1,21 @@
 import {
-    List,
-    SimpleList,
-    Datagrid,
-    TextField,
-    ReferenceField,
-    EditButton,
-    Edit,
-    Create,
-    SimpleForm,
-    ReferenceInput,
-    TextInput,
-    ImageField
-  } from 'react-admin';
+  List,
+  SimpleList,
+  Datagrid,
+  TextField,
+  EditButton,
+  Edit,
+  Create,
+  SimpleForm,
+  TextInput,
+  ImageField
+} from 'react-admin';
 
-import { useRecordContext} from 'react-admin';
+import { useRecordContext } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
 
 const lugarFilters = [
-    <TextInput source="q" label="Search" alwaysOn />
+  <TextInput source="q" label="Search" alwaysOn />
 ];
 
 export const LugarList = () => {
@@ -34,9 +32,9 @@ export const LugarList = () => {
           <EditButton />
         </SimpleList>
       ) : (
-        <Datagrid bulkActionButtons={false}>
+        <Datagrid bulkActionButtons={false} rowClick="edit">
           <TextField source="name" />
-          <ImageField source="imagen"/>
+          <ImageField source="imagen" />
           <TextField source="tipo" />
           <TextField source="ubicacion" />
           <TextField source="descripcion" />
@@ -53,26 +51,26 @@ const LugarTitle = () => {
 };
 
 export const LugarEdit = () => (
-    <Edit title={<LugarTitle />}>
+  <Edit title={<LugarTitle />}>
     <SimpleForm>
-        <TextInput source="id" disabled />
-          <TextInput source="name" />
-          <ImageField source="imagen" />
-          <TextInput source="tipo" />
-          <TextInput source="ubicacion" />
-          <TextInput source="descripcion" />
+      <TextInput source="id" disabled />
+      <TextInput source="name" />
+      <ImageField source="imagen" />
+      <TextInput source="tipo" />
+      <TextInput source="ubicacion" />
+      <TextInput source="descripcion" />
     </SimpleForm>
-    </Edit>
+  </Edit>
 );
 
 export const LugarCreate = () => (
-    <Create>
-        <SimpleForm>
-          <TextInput source="name" />
-          <ImageField source="imagen" />
-          <TextInput source="tipo" />
-          <TextInput source="ubicacion" />
-          <TextInput source="descripcion" />
-        </SimpleForm>
-    </Create>
-    );
+  <Create>
+    <SimpleForm>
+      <TextInput source="name" />
+      <ImageField source="imagen" />
+      <TextInput source="tipo" />
+      <TextInput source="ubicacion" />
+      <TextInput source="descripcion" />
+    </SimpleForm>
+  </Create>
+);
