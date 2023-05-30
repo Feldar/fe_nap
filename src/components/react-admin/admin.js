@@ -14,6 +14,7 @@ import { EjercicioList, EjercicioEdit, EjercicioCreate } from 'components/react-
 import { LugarList, LugarEdit, LugarCreate } from 'components/react-admin/lugares';
 import { EntrenadorList, EntrenadorEdit, EntrenadorCreate } from 'components/react-admin/entrenadores';
 import { RecipeList } from 'components/react-admin/recipes';
+import { ShowsList } from 'components/react-admin/Tvshows'
 
 import CustomerIcon from '@mui/icons-material/SupportAgent';
 import RutinaIcon from '@mui/icons-material/PunchClock'
@@ -81,7 +82,7 @@ const RAdmin = () => {
       <Resource name="customers"
         list={CustomerList} icon={CustomerIcon} edit={CustomerEdit} create={CustomerCreate} />
 
-      <Resource name="customers"
+      <Resource name="tvshows"
         list={ShowsList} icon={CustomerIcon}/>
     </Admin>
   )
