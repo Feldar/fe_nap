@@ -8,6 +8,8 @@ import HomePage from 'pages/home-page';
 import ForgotPassword from 'pages/forgot-password';
 import PasswordReset from 'pages/password-reset';
 import NotFoundPage from 'pages/404';
+import EntrenadorList from 'components/react-admin/Tvshows';
+import AppLayout from 'components/Layouts/AppLayout'
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
         <Route path="/password-reset/:token" element={<PasswordReset />} />
         <Route path="/pre_dashboard" element={<Dashboard />} />
         <Route path="/dashboard/*" element={<RAdmin />} />
+        <Route path="/recipes" element={<EntrenadorList />} />
         <Route path="*" element={<NotFoundPage/>}
         />
       </Routes>

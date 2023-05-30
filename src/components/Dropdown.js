@@ -12,6 +12,7 @@ const Dropdown = ({
 
   switch (width) {
     case '48':
+    default:
       width = 'w-48'
       break
   }

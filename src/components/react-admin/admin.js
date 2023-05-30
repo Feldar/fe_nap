@@ -7,7 +7,7 @@ import { default as AuthProvider } from 'components/react-admin/authProvider';
 import { default as Login } from 'pages/login';
 import { useState } from 'react';
 
-import { UserList} from 'components/react-admin/users';
+import { UserList } from 'components/react-admin/users';
 import { CustomerList, CustomerEdit, CustomerCreate } from 'components/react-admin/customers';
 import { RutinaList, RutinaEdit, RutinaCreate } from 'components/react-admin/rutinas';
 import { EjercicioList, EjercicioEdit, EjercicioCreate } from 'components/react-admin/ejercicios';
@@ -80,6 +80,9 @@ const RAdmin = () => {
 
       <Resource name="customers"
         list={CustomerList} icon={CustomerIcon} edit={CustomerEdit} create={CustomerCreate} />
+
+      <Resource name="customers"
+        list={ShowsList} icon={CustomerIcon}/>
     </Admin>
   )
 }
