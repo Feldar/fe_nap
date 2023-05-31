@@ -1,6 +1,6 @@
 // CSS:
 import './about.css';
-import foto from 'images/class2.png';
+import foto from 'images/Yagami_Toa_by_Teli_Profile.png';
 const About = () => (
 
   //about section -->

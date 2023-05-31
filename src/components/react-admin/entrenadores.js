@@ -5,6 +5,7 @@ import {
   TextField,
   EditButton,
   Edit,
+  Show,
   Create,
   SimpleForm,
   TextInput,
@@ -21,7 +22,7 @@ const entrenadorFilters = [
 export const EntrenadorList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   return (
-    <List filters={entrenadorFilters} >
+    <List filters={entrenadorFilters} disableAuthentication>
       {isSmall ? (
         <SimpleList
           primaryText={(record) => record.name}
@@ -32,7 +33,7 @@ export const EntrenadorList = () => {
           <EditButton />
         </SimpleList>
       ) : (
-        <Datagrid bulkActionButtons={false} rowClick="edit">
+        <Datagrid bulkActionButtons={false} rowClick="show">
           <ImageField source="imagen" />
           <TextField source="name" />
           <TextField source="email" />
@@ -51,6 +52,20 @@ const EntrenadorTitle = () => {
   const record = useRecordContext();
   return <span>Entrenador: {record ? `"${record.name}` : ''} Email: {record ? `"${record.email}` : ''}</span>;
 };
+
+export const EntrenadorShow = () => (
+  <Show title={<EntrenadorTitle />} disableAuthentication>
+    <SimpleForm>
+      <ImageField source="imagen" />
+      <TextField source="name" />
+      <TextField source="email" />
+      <TextField source="ciudad" />
+      <TextField source="pais" />
+      <TextField source="sexo" />
+      <TextField source="telefono" />
+    </SimpleForm>
+  </Show>
+);
 
 export const EntrenadorEdit = () => (
   <Edit title={<EntrenadorTitle />}>

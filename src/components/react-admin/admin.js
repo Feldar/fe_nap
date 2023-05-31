@@ -12,7 +12,7 @@ import { CustomerList, CustomerEdit, CustomerCreate } from 'components/react-adm
 import { RutinaList, RutinaEdit, RutinaCreate } from 'components/react-admin/rutinas';
 import { EjercicioList, EjercicioEdit, EjercicioCreate } from 'components/react-admin/ejercicios';
 import { LugarList, LugarEdit, LugarCreate } from 'components/react-admin/lugares';
-import { EntrenadorList, EntrenadorEdit, EntrenadorCreate } from 'components/react-admin/entrenadores';
+import { EntrenadorList, EntrenadorShow, EntrenadorEdit, EntrenadorCreate } from 'components/react-admin/entrenadores';
 import { RecipeList } from 'components/react-admin/recipes';
 import { ShowsList } from 'components/react-admin/Tvshows'
 
@@ -69,7 +69,8 @@ const RAdmin = () => {
         list={LugarList} icon={LugarIcon} edit={LugarEdit} create={LugarCreate} />
 
       <Resource name="entrenadores"
-        list={EntrenadorList} icon={EntrenadorIcon} edit={EntrenadorEdit} create={EntrenadorCreate} />
+        list={EntrenadorList} icon={EntrenadorIcon} show={EntrenadorShow}
+        edit={EntrenadorEdit} create={EntrenadorCreate} />
 
       <Resource name="ejercicios"
         list={EjercicioList} icon={EjercicioIcon} edit={EjercicioEdit} create={EjercicioCreate} />
