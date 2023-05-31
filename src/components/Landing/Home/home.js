@@ -4,14 +4,13 @@ const Home = () => (
     <div className="container">
       <div className="row">
         <div className="description">
-          <h1>Bienvenido</h1>
+          <h1>Nananiji Archive Project</h1>
           <p className="text-justify">
-            En FitChallenge apostamos por la salud, por ello ofrecemos fitness para todos
-            cuando y donde sea, mediante el deporte o la alimentación. ¿Te atreves a cambiar tu vida?
+            Nananiji Archive Project
           </p>
-          <a type="button" className="btn btn-outline-light btn-lg" href='dashboard'>Dashboard</a>
-          <a type="button" className="btn btn-outline-light btn-lg" href='/register'>Regístrate</a>
-          <a type="button" className="btn btn-outline-light btn-lg" href='dashboard/login'>Login</a>
+          <a type="button" className="btn btn-dark btn-lg" href='dashboard'>Dashboard</a>
+          <a type="button" className="btn btn-dark btn-lg" href='/register'>Regístrate</a>
+          <a type="button" className="btn btn-dark btn-lg" href='dashboard/login'>Login</a>
         </div>
       </div>
     </div>

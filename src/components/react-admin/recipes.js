@@ -17,7 +17,7 @@ const recipeFilters = [
 export const RecipeList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   return (
-    <List filters={recipeFilters} >
+    <List filters={recipeFilters} disableAuthentication >
       {isSmall ? (
         <SimpleList
           primaryText={(record) => record.hits}
