@@ -12,13 +12,17 @@ import {
   ImageField,
   ImageInput,
   DateInput,
-  DateField
+  DateField,
+  SelectInput,
+  required,
+  NumberInput,
+  NumberField
 } from 'react-admin';
 
 import { useRecordContext } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
 
-const entrenadorFilters = [
+const tvshowsFilters = [
   <TextInput source="q" label="Search" alwaysOn />
 ];
 
@@ -26,7 +30,7 @@ export const TvshowsList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   
   return (
-    <List filters={entrenadorFilters} >
+    <List filters={tvshowsFilters} >
       {isSmall ? (
         <SimpleList
           primaryText={(record) => record.name_rm}
@@ -44,7 +48,7 @@ export const TvshowsList = () => {
           <TextField source="name_en" />
           <DateField source="start_date" />
           <DateField source="end_date" />
-          <TextField source="episodes" />
+          <NumberField source="episodes" />
           <TextField source="status" />
           <EditButton />
         </Datagrid>
@@ -67,7 +71,7 @@ export const TvshowsShow = () => (
         <TextField source="name_en" />
         <DateField source="start_date" />
         <DateField source="end_date" />
-        <TextField source="episodes" />
+        <NumberField source="episodes" />
         <TextField source="status" />
       </SimpleForm>
     </Show>
@@ -80,13 +84,17 @@ export const TvshowsEdit = () => (
       <ImageInput source="image">
         <ImageField source="src" title="title" />
       </ImageInput>
-      <TextInput source="name_rm" />
-      <TextInput source="name_jp" />
+      <TextInput source="name_rm" validate={required()}/>
+      <TextInput source="name_jp" validate={required()}/>
       <TextInput source="name_en" />
-      <DateInput source="start_date" />
+      <DateInput source="start_date" validate={required()}/>
       <DateInput source="end_date" />
-      <TextInput source="episodes" />
-      <TextInput source="status" />
+      <NumberInput source="episodes" />
+      <SelectInput source="status"  validate={required()} choices={[
+          { id: 'Ongoing', name: 'Ongoing' },
+          { id: 'Ended', name: 'Ended' },
+          { id: 'Not yet aired', name: 'Not yet aired' }
+      ]} />
     </SimpleForm>
   </Edit>
 );
@@ -94,16 +102,20 @@ export const TvshowsEdit = () => (
 export const TvshowsCreate = () => (
   <Create>
     <SimpleForm>
-      <ImageInput source="image" />
       <ImageInput source="image">
         <ImageField source="src" title="title" />
       </ImageInput>
-      <TextInput source="name_jp" />
+      <TextInput source="name_rm" validate={required()}/>
+      <TextInput source="name_jp" validate={required()}/>
       <TextInput source="name_en" />
-      <DateInput source="start_date" />
+      <DateInput source="start_date" validate={required()}/>
       <DateInput source="end_date" />
-      <TextInput source="episodes" />
-      <TextInput source="status" />
+      <NumberInput source="episodes" />
+      <SelectInput source="status"  validate={required()} choices={[
+          { id: 'Ongoing', name: 'Ongoing' },
+          { id: 'Ended', name: 'Ended' },
+          { id: 'Not yet aired', name: 'Not yet aired' }
+      ]} />
     </SimpleForm>
   </Create>
 );

@@ -14,7 +14,8 @@ import { EjercicioList, EjercicioEdit, EjercicioCreate } from 'components/react-
 import { LugarList, LugarEdit, LugarCreate } from 'components/react-admin/lugares';
 import { EntrenadorList, EntrenadorShow, EntrenadorEdit, EntrenadorCreate } from 'components/react-admin/entrenadores';
 import { RecipeList } from 'components/react-admin/recipes';
-import { TvshowsList, TvshowsShow, TvshowsEdit, TvshowsCreate } from 'components/react-admin/Tvshows'
+import { TvshowsList, TvshowsShow, TvshowsEdit, TvshowsCreate } from 'components/react-admin/tvshows'
+import { EpisodesList, EpisodesShow, EpisodesEdit, EpisodesCreate } from 'components/react-admin/episodes'
 
 import CustomerIcon from '@mui/icons-material/SupportAgent';
 import RutinaIcon from '@mui/icons-material/PunchClock'
@@ -87,6 +88,10 @@ const RAdmin = () => {
       <Resource name="tvshows"
         list={TvshowsList} icon={TvshowsIcon} show={TvshowsShow}
         edit={TvshowsEdit} create={TvshowsCreate}/>
+
+      <Resource name="episodes"
+        list={EpisodesList} icon={TvshowsIcon} show={EpisodesShow}
+        edit={EpisodesEdit} create={EpisodesCreate}/>
     </Admin>
   )
 }
