@@ -16,7 +16,10 @@ import {
   SelectInput,
   required,
   NumberInput,
-  NumberField
+  NumberField,
+  ReferenceInput,
+  ReferenceField,
+  AutocompleteInput
 } from 'react-admin';
 
 import { useRecordContext } from 'react-admin';
@@ -28,7 +31,7 @@ const episodeFilters = [
 
 export const EpisodesList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-  
+
   return (
     <List filters={episodeFilters} >
       {isSmall ? (
@@ -52,6 +55,9 @@ export const EpisodesList = () => {
           <DateField source="release_date" />
           <TextField source="type" />
           <TextField source="duration" />
+          <ReferenceField source="tvshows_id" reference="tvshows" link="show">
+            <TextField source="name_rm" />
+          </ReferenceField>
           <EditButton />
         </Datagrid>
       )}
@@ -61,42 +67,49 @@ export const EpisodesList = () => {
 
 const EpisodesTitle = () => {
   const record = useRecordContext();
-  return <span>Nombre: {record.name_rm}</span>;
+  console.log(record);
+  return record.name_rm;
 };
 
 export const EpisodesShow = () => (
-    <Show title={<EpisodesTitle />} disableAuthentication>
-      <SimpleForm>
-        <FileField source="src" title="title" />
-        <NumberField source="episode_number" />
-          <TextField source="name_rm" />
-          <TextField source="name_jp" />
-          <TextField source="name_en" />
-          <TextField source="format" />
-          <TextField source="resolution" />
-          <DateField source="release_date" />
-          <TextField source="type" />
-          <TextField source="duration" />
-      </SimpleForm>
-    </Show>
-  );
+  <Show title={<EpisodesTitle />} disableAuthentication>
+    <SimpleForm>
+      <FileField source="src" title="title" />
+      <NumberField source="episode_number" />
+      <TextField source="name_rm" />
+      <TextField source="name_jp" />
+      <TextField source="name_en" />
+      <TextField source="format" />
+      <TextField source="resolution" />
+      <DateField source="release_date" />
+      <TextField source="type" />
+      <TextField source="duration" />
+      <ReferenceField label="Tv show" source="tvshows_id" reference="tvshows" link="show">
+        <TextField source="name_rm" />
+      </ReferenceField>
+    </SimpleForm>
+  </Show>
+);
 
 export const EpisodesEdit = () => (
   <Edit title={<EpisodesTitle />}>
     <SimpleForm>
       <TextInput source="id" disabled />
+      <ReferenceInput source="tvshows_id" reference="tvshows">
+        <AutocompleteInput optionText="name_rm" />
+      </ReferenceInput>
       <FileInput source="file">
-          <FileField source="src" title="title" />
+        <FileField source="src" title="title" />
       </FileInput>
-      <NumberInput source="episode_number" validate={required()}/>
-      <TextInput source="name_rm" validate={required()}/>
+      <NumberInput source="episode_number" validate={required()} />
+      <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" />
       <TextInput source="name_en" />
-      <TextInput source="format" validate={required()}/>
-      <TextInput source="resolution" validate={required()}/>
-      <DateInput source="release_date" validate={required()}/>
-      <TextInput source="type" validate={required()}/>
-      <TextInput source="duration" validate={required()}/>
+      <TextInput source="format" validate={required()} />
+      <TextInput source="resolution" validate={required()} />
+      <DateInput source="release_date" validate={required()} />
+      <TextInput source="type" validate={required()} />
+      <TextInput source="duration" validate={required()} />
     </SimpleForm>
   </Edit>
 );
@@ -104,18 +117,21 @@ export const EpisodesEdit = () => (
 export const EpisodesCreate = () => (
   <Create>
     <SimpleForm>
+      <ReferenceInput source="tvshows_id" reference="tvshows">
+        <AutocompleteInput optionText="name_rm" />
+      </ReferenceInput>
       <FileInput source="file">
-        
+        <FileField source="src" title="title" />
       </FileInput>
-      <NumberInput source="episode_number" validate={required()}/>
-      <TextInput source="name_rm" validate={required()}/>
+      <NumberInput source="episode_number" validate={required()} />
+      <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" />
       <TextInput source="name_en" />
-      <TextInput source="format" validate={required()}/>
-      <TextInput source="resolution" validate={required()}/>
-      <DateInput source="release_date" validate={required()}/>
-      <TextInput source="type" validate={required()}/>
-      <TextInput source="duration" validate={required()}/>
+      <TextInput source="format" validate={required()} />
+      <TextInput source="resolution" validate={required()} />
+      <DateInput source="release_date" validate={required()} />
+      <TextInput source="type" validate={required()} />
+      <TextInput source="duration" validate={required()} />
     </SimpleForm>
   </Create>
 );
