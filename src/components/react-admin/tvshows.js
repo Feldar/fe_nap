@@ -42,7 +42,7 @@ export const TvshowsList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="show">
-          <ImageField source="image" src="path" title="title" />
+          <ImageField source="image" title="title" />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
           <TextField source="name_en" />
@@ -59,7 +59,7 @@ export const TvshowsList = () => {
 
 const TvshowsTitle = () => {
   const record = useRecordContext();
-  return <span>Nombre: {record.name_rm}</span>;
+  return record ? record.name_rm : '';
 };
 
 export const TvshowsShow = () => (

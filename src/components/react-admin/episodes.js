@@ -45,7 +45,7 @@ export const EpisodesList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="show">
-          <FileField source="src" title="title" />
+          <FileField source="file" title="title" />
           <NumberField source="episode_number" />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
@@ -67,14 +67,13 @@ export const EpisodesList = () => {
 
 const EpisodesTitle = () => {
   const record = useRecordContext();
-  console.log(record);
-  return record.name_rm;
+  return record ? record.name_rm : '';
 };
 
 export const EpisodesShow = () => (
   <Show title={<EpisodesTitle />} disableAuthentication>
     <SimpleForm>
-      <FileField source="src" title="title" />
+      <FileField source="file" title="title" />
       <NumberField source="episode_number" />
       <TextField source="name_rm" />
       <TextField source="name_jp" />
