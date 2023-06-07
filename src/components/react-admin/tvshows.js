@@ -41,7 +41,7 @@ export const TvshowsList = () => {
   // // Example usage: convert a string to a File object
   // const imageString = 'data:image/png;base64,iVBORw0KG...'; // Replace with your image string
   // const imageFile = stringToFileObject(imageString, 'image.png', 'image/png');
-  // console.log(imageFile)
+  // console.log(imageFile);
 
   return (
     <List filters={tvshowsFilters} >
@@ -56,7 +56,7 @@ export const TvshowsList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="show">
-          <ImageField source="image" title="title.e"/>
+          <FileToObjectField />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
           <TextField source="name_en" />
@@ -76,38 +76,59 @@ const TvshowsTitle = () => {
   return record ? record.name_rm : '';
 };
 
+const FileToObjectField = () => {
+  const record = useRecordContext();
+  // const fileObject = JSON.parse(record.image);
+  if (!record) return null;
+  if (!record.image) return null;
+  const fileObject = JSON.parse(record.image);
+
+  return <ImageField source="image" title={fileObject.title} />;
+};
+
+const FileToObjectInput = () => {
+  const record = useRecordContext();
+  if (!record) return null;
+  if (!record.image)
+    return <ImageInput source="image">
+      <ImageField source="src" title="title" />
+    </ImageInput>;
+  const fileObject = JSON.parse(record.image);
+
+  return <ImageInput source="image" title={fileObject.title}/>;
+};
+
 export const TvshowsShow = () => (
-    <Show title={<TvshowsTitle />} disableAuthentication>
-      <SimpleForm>
-        <ImageField source="image"/>
-        <TextField source="name_rm" />
-        <TextField source="name_jp" />
-        <TextField source="name_en" />
-        <DateField source="start_date" />
-        <DateField source="end_date" />
-        <NumberField source="episodes" />
-        <TextField source="status" />
-      </SimpleForm>
-    </Show>
-  );
+  <Show title={<TvshowsTitle />} disableAuthentication>
+    <SimpleForm>
+      <FileToObjectField />
+      <TextField source="name_rm" />
+      <TextField source="name_jp" />
+      <TextField source="name_en" />
+      <DateField source="start_date" />
+      <DateField source="end_date" />
+      <NumberField source="episodes" />
+      <TextField source="status" />
+    </SimpleForm>
+  </Show>
+);
 
 export const TvshowsEdit = () => (
   <Edit title={<TvshowsTitle />}>
     <SimpleForm>
       <TextInput source="id" disabled />
-      <ImageInput source="image">
-        <ImageField source="src" title="title" />
-      </ImageInput>
-      <TextInput source="name_rm" validate={required()}/>
-      <TextInput source="name_jp" validate={required()}/>
+      <FileToObjectInput />
+      <FileToObjectField />
+      <TextInput source="name_rm" validate={required()} />
+      <TextInput source="name_jp" validate={required()} />
       <TextInput source="name_en" />
-      <DateInput source="start_date" validate={required()}/>
+      <DateInput source="start_date" validate={required()} />
       <DateInput source="end_date" />
       <NumberInput source="episodes" />
-      <SelectInput source="status"  validate={required()} choices={[
-          { id: 'Ongoing', name: 'Ongoing' },
-          { id: 'Ended', name: 'Ended' },
-          { id: 'Not yet aired', name: 'Not yet aired' }
+      <SelectInput source="status" validate={required()} choices={[
+        { id: 'Ongoing', name: 'Ongoing' },
+        { id: 'Ended', name: 'Ended' },
+        { id: 'Not yet aired', name: 'Not yet aired' }
       ]} />
     </SimpleForm>
   </Edit>
@@ -116,19 +137,17 @@ export const TvshowsEdit = () => (
 export const TvshowsCreate = () => (
   <Create>
     <SimpleForm>
-      <ImageInput source="image">
-        <ImageField source="src" title="title" />
-      </ImageInput>
-      <TextInput source="name_rm" validate={required()}/>
-      <TextInput source="name_jp" validate={required()}/>
+      <FileToObjectInput />
+      <TextInput source="name_rm" validate={required()} />
+      <TextInput source="name_jp" validate={required()} />
       <TextInput source="name_en" />
-      <DateInput source="start_date" validate={required()}/>
+      <DateInput source="start_date" validate={required()} />
       <DateInput source="end_date" />
       <NumberInput source="episodes" />
-      <SelectInput source="status"  validate={required()} choices={[
-          { id: 'Ongoing', name: 'Ongoing' },
-          { id: 'Ended', name: 'Ended' },
-          { id: 'Not yet aired', name: 'Not yet aired' }
+      <SelectInput source="status" validate={required()} choices={[
+        { id: 'Ongoing', name: 'Ongoing' },
+        { id: 'Ended', name: 'Ended' },
+        { id: 'Not yet aired', name: 'Not yet aired' }
       ]} />
     </SimpleForm>
   </Create>
