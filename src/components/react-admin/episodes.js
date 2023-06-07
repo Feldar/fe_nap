@@ -45,7 +45,7 @@ export const EpisodesList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="show">
-          <FileField source="file" title="title" />
+          <FileToObjectField />
           <NumberField source="episode_number" />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
@@ -70,10 +70,31 @@ const EpisodesTitle = () => {
   return record ? record.name_rm : '';
 };
 
+const FileToObjectField = () => {
+  const record = useRecordContext();
+  if (!record) return null;
+  if (!record.file) return null;
+  const fileObject = JSON.parse(record.file);
+
+  return <FileField source="file" title={fileObject.title} />;
+};
+
+const FileToObjectInput = () => {
+  const record = useRecordContext();
+  if (!record) return null;
+  if (!record.file)
+    return <FileInput source="file">
+      <FileField source="src" title="title" />
+    </FileInput>
+  const fileObject = JSON.parse(record.file);
+
+  return <FileInput source="file"/>;
+};
+
 export const EpisodesShow = () => (
   <Show title={<EpisodesTitle />} disableAuthentication>
     <SimpleForm>
-      <FileField source="file" title="title" />
+      <FileToObjectField />
       <NumberField source="episode_number" />
       <TextField source="name_rm" />
       <TextField source="name_jp" />
@@ -97,9 +118,8 @@ export const EpisodesEdit = () => (
       <ReferenceInput source="tvshows_id" reference="tvshows">
         <AutocompleteInput optionText="name_rm" />
       </ReferenceInput>
-      <FileInput source="file">
-        <FileField source="src" title="title" />
-      </FileInput>
+      <FileToObjectInput />
+      <FileToObjectField />
       <NumberInput source="episode_number" validate={required()} />
       <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" />
