@@ -88,7 +88,7 @@ const FileToObjectInput = () => {
     </FileInput>
   const fileObject = JSON.parse(record.file);
 
-  return <FileInput source="file"/>;
+  return <FileInput source="file" title={fileObject.title} />;
 };
 
 export const EpisodesShow = () => (
@@ -118,8 +118,9 @@ export const EpisodesEdit = () => (
       <ReferenceInput source="tvshows_id" reference="tvshows">
         <AutocompleteInput optionText="name_rm" />
       </ReferenceInput>
-      <FileToObjectInput />
-      <FileToObjectField />
+      <FileInput source="file">
+        <FileField source="src" title="title" />
+      </FileInput>
       <NumberInput source="episode_number" validate={required()} />
       <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" />
