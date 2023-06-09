@@ -9,11 +9,10 @@ const Header = () => (
 
       <ul className="navbar" id="lista">
         <img src={logo} alt="logo" className="logo" />
-        <a href="#home">Home</a>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/tvshows">Tv shows</NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
         <a href="#about">About</a>
-        <NavLink to="/dashboard/recipes">
-          Recipes
-        </NavLink>
         <a href="#contact">Contacto</a>
       </ul>
     </div>

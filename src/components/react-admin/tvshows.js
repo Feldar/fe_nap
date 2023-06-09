@@ -28,7 +28,7 @@ const tvshowsFilters = [
 
 export const TvshowsList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-  const record = useRecordContext();
+  //const record = useRecordContext();
 
   // // Convert the string to a File object
   // const stringToFileObject = (str, filename, type) => {
@@ -56,7 +56,7 @@ export const TvshowsList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="show">
-          <FileToObjectField />
+          <ImageField source="image" title="title" />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
           <TextField source="name_en" />
@@ -93,15 +93,20 @@ const FileToObjectInput = () => {
     return <ImageInput source="image">
       <ImageField source="src" title="title" />
     </ImageInput>;
+  console.log(record.image)
   const fileObject = JSON.parse(record.image);
 
-  return <ImageInput source="image" title={fileObject.title}/>;
+  return <ImageInput source="image">
+    <ImageField source={fileObject} title="title" />
+  </ImageInput>;
 };
 
 export const TvshowsShow = () => (
   <Show title={<TvshowsTitle />} disableAuthentication>
     <SimpleForm>
-      <FileToObjectField />
+      <ImageField source="image">
+
+      </ImageField>
       <TextField source="name_rm" />
       <TextField source="name_jp" />
       <TextField source="name_en" />
@@ -117,8 +122,9 @@ export const TvshowsEdit = () => (
   <Edit title={<TvshowsTitle />}>
     <SimpleForm>
       <TextInput source="id" disabled />
-      <FileToObjectInput />
-      <FileToObjectField />
+      <ImageInput source="image">
+        <ImageField source="src" title="title" />
+      </ImageInput>
       <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" validate={required()} />
       <TextInput source="name_en" />
@@ -137,7 +143,7 @@ export const TvshowsEdit = () => (
 export const TvshowsCreate = () => (
   <Create>
     <SimpleForm>
-      <FileToObjectInput />
+      <ImageInput source="image" title="title" />
       <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" validate={required()} />
       <TextInput source="name_en" />
