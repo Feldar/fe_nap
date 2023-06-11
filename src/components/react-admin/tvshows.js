@@ -57,8 +57,8 @@ export const TvshowsList = () => {
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="show">
           <ImageField source="image" title="title" />
-          <TextField source="name_rm" />
           <TextField source="name_jp" />
+          <TextField source="name_rm" />
           <TextField source="name_en" />
           <DateField source="start_date" />
           <DateField source="end_date" />
@@ -107,8 +107,8 @@ export const TvshowsShow = () => (
       <ImageField source="image">
 
       </ImageField>
-      <TextField source="name_rm" />
       <TextField source="name_jp" />
+      <TextField source="name_rm" />
       <TextField source="name_en" />
       <DateField source="start_date" />
       <DateField source="end_date" />
@@ -125,12 +125,12 @@ export const TvshowsEdit = () => (
       <ImageInput source="image">
         <ImageField source="src" title="title" />
       </ImageInput>
-      <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" validate={required()} />
+      <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_en" />
       <DateInput source="start_date" validate={required()} />
       <DateInput source="end_date" />
-      <NumberInput source="episodes" />
+      <NumberInput source="episodes" min={0}/>
       <SelectInput source="status" validate={required()} choices={[
         { id: 'Ongoing', name: 'Ongoing' },
         { id: 'Ended', name: 'Ended' },
@@ -144,12 +144,12 @@ export const TvshowsCreate = () => (
   <Create>
     <SimpleForm>
       <ImageInput source="image" title="title" />
-      <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" validate={required()} />
+      <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_en" />
       <DateInput source="start_date" validate={required()} />
       <DateInput source="end_date" />
-      <NumberInput source="episodes" />
+      <NumberInput source="episodes" min={0}/>
       <SelectInput source="status" validate={required()} choices={[
         { id: 'Ongoing', name: 'Ongoing' },
         { id: 'Ended', name: 'Ended' },

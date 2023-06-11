@@ -4,31 +4,38 @@ import imageLoader from 'images/22-7_Logo.png';
 import TvshowView from 'components/TvshowView/TvshowView';
 import AjaxLoader from 'components/AjaxLoader/AjaxLoader';
 import useTvshow from 'hooks/useTvshow';
-import Header from 'components/Landing/Header/header';
+import Contacto from 'components/Landing/Contacto/contacto';
 import Footer from 'components/Landing/Footer/footer';
+import Header from 'components/Landing/Header/header';
+import EpisodesList from 'pages/EpisodesList/EpisodesList';
+import Episodes from 'components/Episodes/Episodes';
 
 const TvshowDetails = () => {
-    const { id } = useParams();
-    const {searching, tvshow} = useTvshow(id);
+  const { id } = useParams();
+  const { searching, tvshow } = useTvshow(id);
 
-    return (
-        <div>
-            {searching 
-                ? <AjaxLoader loader={imageLoader}></AjaxLoader> 
-                : <TvshowView  
-                    key     ={tvshow.id} 
-                    name    ={tvshow.name}
-                    image    ={tvshow.image}
-                    status    ={tvshow.status}
-                    origen    ={tvshow.origen}
-                    episodes    ={tvshow.episodes}
-                    localizacion    ={tvshow.localizacion}
-                    gender          ={tvshow.gender}
-                    >                    
-                </TvshowView>}
-            <Footer />
-        </div>
-    )
+  return (
+    <div>
+      <Header />
+      {searching
+        ? <AjaxLoader loader={imageLoader}></AjaxLoader>
+        : <TvshowView
+          key={tvshow.id}
+          name_rm={tvshow.name_rm}
+          name_jp={tvshow.name_jp}
+          name_en={tvshow.name_en}
+          image={tvshow.image}
+          start_date={tvshow.start_date}
+          end_date={tvshow.end_date}
+          episodes={tvshow.episodes}
+          status={tvshow.status}
+        >
+        </TvshowView>}
+        <Episodes tvshow_id={id} />
+      <Contacto />
+      <Footer />
+    </div>
+  )
 }
 
 export default TvshowDetails;

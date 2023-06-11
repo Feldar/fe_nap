@@ -8,22 +8,10 @@ import { default as Login } from 'pages/login';
 import { useState } from 'react';
 
 import { UserList } from 'components/react-admin/users';
-import { CustomerList, CustomerEdit, CustomerCreate } from 'components/react-admin/customers';
-import { RutinaList, RutinaEdit, RutinaCreate } from 'components/react-admin/rutinas';
-import { EjercicioList, EjercicioEdit, EjercicioCreate } from 'components/react-admin/ejercicios';
-import { LugarList, LugarEdit, LugarCreate } from 'components/react-admin/lugares';
-import { EntrenadorList, EntrenadorShow, EntrenadorEdit, EntrenadorCreate } from 'components/react-admin/entrenadores';
-import { RecipeList } from 'components/react-admin/recipes';
 import { TvshowsList, TvshowsShow, TvshowsEdit, TvshowsCreate } from 'components/react-admin/tvshows'
 import { EpisodesList, EpisodesShow, EpisodesEdit, EpisodesCreate } from 'components/react-admin/episodes'
 
-import CustomerIcon from '@mui/icons-material/SupportAgent';
-import RutinaIcon from '@mui/icons-material/PunchClock'
 import UserIcon from '@mui/icons-material/Group';
-import RecipeIcon from '@mui/icons-material/LocalDining';
-import EjercicioIcon from '@mui/icons-material/FitnessCenter';
-import LugarIcon from '@mui/icons-material/Place';
-import EntrenadorIcon from '@mui/icons-material/Person';
 import TvshowsIcon from '@mui/icons-material/Tv';
 
 //import { AdminLayout } from 'components/react-admin/adminLayout';
@@ -65,26 +53,6 @@ const RAdmin = () => {
       authProvider={AuthProvider}
       loginPage={myLogin}
     >
-      <Resource name="recipes" list={RecipeList} icon={RecipeIcon} />
-
-      <Resource name="lugares"
-        list={LugarList} icon={LugarIcon} edit={LugarEdit} create={LugarCreate} />
-
-      <Resource name="entrenadores"
-        list={EntrenadorList} icon={EntrenadorIcon} show={EntrenadorShow}
-        edit={EntrenadorEdit} create={EntrenadorCreate} />
-
-      <Resource name="ejercicios"
-        list={EjercicioList} icon={EjercicioIcon} edit={EjercicioEdit} create={EjercicioCreate} />
-
-      <Resource name="rutinas"
-        list={RutinaList} icon={RutinaIcon} edit={RutinaEdit} create={RutinaCreate} />
-
-      <Resource name="users" list={UserList} icon={UserIcon} />
-
-      <Resource name="customers"
-        list={CustomerList} icon={CustomerIcon} edit={CustomerEdit} create={CustomerCreate} />
-
       <Resource name="tvshows"
         list={TvshowsList} icon={TvshowsIcon} show={TvshowsShow}
         edit={TvshowsEdit} create={TvshowsCreate}/>
@@ -92,6 +60,9 @@ const RAdmin = () => {
       <Resource name="episodes"
         list={EpisodesList} icon={TvshowsIcon} show={EpisodesShow}
         edit={EpisodesEdit} create={EpisodesCreate}/>
+
+      <Resource name="users" list={UserList} icon={UserIcon} />
+
     </Admin>
   )
 }

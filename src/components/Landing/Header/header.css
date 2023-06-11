@@ -16,7 +16,7 @@
   
   /* Seccion Header */
   header {
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
   }
   header #lista a {
     color: #32cad7;
