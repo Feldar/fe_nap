@@ -24,6 +24,7 @@ import {
 
 import { useRecordContext } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
+import axios from 'lib/axios';
 
 const episodeFilters = [
   <TextInput source="q" label="Search" alwaysOn />
@@ -45,7 +46,8 @@ export const EpisodesList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="show">
-          <FileToObjectField />
+          {/* <FileToObjectField /> */}
+          <FileField source="file" title='title' />
           <NumberField source="episode_number" />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
@@ -74,9 +76,10 @@ const FileToObjectField = () => {
   const record = useRecordContext();
   if (!record) return null;
   if (!record.file) return null;
+  console.log(record.file)
   const fileObject = JSON.parse(record.file);
-
-  return <FileField source="file" title={fileObject.title} />;
+  
+  return <FileField source="file" title="title" />;
 };
 
 const FileToObjectInput = () => {
@@ -88,8 +91,21 @@ const FileToObjectInput = () => {
     </FileInput>
   const fileObject = JSON.parse(record.file);
 
-  return <FileInput source="file" title={fileObject.title} />;
+  return <FileInput source="file"/>;
 };
+
+const HandleSubmit = () => {
+  const fileElement = document.getElementById('fileInput')
+  let file = fileElement.files[0];
+  let formData = new FormData();
+  formData.set('file', file);
+  axios.post('http://nananijiarchiveproject.test/img', formData)
+    .then(res => {
+    console.log(res)
+  })
+  console.log(fileElement.files[0])
+
+}
 
 export const EpisodesShow = () => (
   <Show title={<EpisodesTitle />} disableAuthentication>
@@ -118,10 +134,10 @@ export const EpisodesEdit = () => (
       <ReferenceInput source="tvshows_id" reference="tvshows">
         <AutocompleteInput optionText="name_rm" />
       </ReferenceInput>
-      <FileInput source="file">
-        <FileField source="src" title="title" />
-      </FileInput>
-      <NumberInput source="episode_number" validate={required()} />
+      {/* <FileToObjectInput />
+      <FileToObjectField /> */}
+      <input id="fileInput" name="file" type="file" />
+      <NumberInput source="episode_number" validate={required()} min={1}/>
       <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" />
       <TextInput source="name_en" />
@@ -137,13 +153,13 @@ export const EpisodesEdit = () => (
 export const EpisodesCreate = () => (
   <Create>
     <SimpleForm>
-      <ReferenceInput source="tvshows_id" reference="tvshows">
+      <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={0}>
         <AutocompleteInput optionText="name_rm" />
       </ReferenceInput>
       <FileInput source="file">
         <FileField source="src" title="title" />
       </FileInput>
-      <NumberInput source="episode_number" validate={required()} />
+      <NumberInput source="episode_number" validate={required()} min={1}/>
       <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" />
       <TextInput source="name_en" />
