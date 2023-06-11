@@ -134,9 +134,7 @@ export const EpisodesEdit = () => (
       <ReferenceInput source="tvshows_id" reference="tvshows">
         <AutocompleteInput optionText="name_rm" />
       </ReferenceInput>
-      {/* <FileToObjectInput />
-      <FileToObjectField /> */}
-      <input id="fileInput" name="file" type="file" />
+      <FileInput source="file"/>
       <NumberInput source="episode_number" validate={required()} min={1}/>
       <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" />
