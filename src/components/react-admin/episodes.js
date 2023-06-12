@@ -24,7 +24,26 @@ import {
 
 import { useRecordContext } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
-import axios from 'lib/axios';
+import axios from 'axios';
+import { useState } from 'react';
+
+// const MyFileInput = () => {
+//   const [file, setFile] = useState(null);
+
+//   const uploadFile = e => {
+//     setFile(e);
+//   }
+//   console.log(file);
+//   const insertFile = async() => {
+//     const f = new FormData();
+  
+//     f.append('file', file);
+  
+//     console.log(f);
+//   }
+
+//   return <input type='file'  name='file' onChange = {(e) => uploadFile(e.target.files)}/>
+// }
 
 const episodeFilters = [
   <TextInput source="q" label="Search" alwaysOn />
@@ -134,7 +153,7 @@ export const EpisodesEdit = () => (
       <ReferenceInput source="tvshows_id" reference="tvshows">
         <AutocompleteInput optionText="name_rm" />
       </ReferenceInput>
-      <FileInput source="file"/>
+      {/* <MyFileInput /> */}
       <NumberInput source="episode_number" validate={required()} min={1}/>
       <TextInput source="name_rm" validate={required()} />
       <TextInput source="name_jp" />

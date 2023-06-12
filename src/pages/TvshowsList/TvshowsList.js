@@ -107,7 +107,7 @@ const TvshowsList = (props) => {
         </GeneroContext.Provider>
       </StatusContext.Provider> */}
       <div className="TvshowsList container">
-        <div className='row row-cols-3'>
+        <div className='row'>
           {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
           filter(filtroStatus).sort(ordenarAlfabeticamente).map(showTvshow)} */}
           {props.tvshowsList.map(showTvshow)}

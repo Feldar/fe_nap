@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const TvshowDetails = (props) => (
 
-  <div className='col border d-flex justify-content-center'>
+  <div className='col-xs-12 col-sm-6 col-md-4 col-xl-3 border d-flex justify-content-center'>
     <figure className='figura'>
       
       <Link to={`/tvshows/${props.id}`}>
