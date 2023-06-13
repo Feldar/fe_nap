@@ -9,7 +9,6 @@ import {
   Create,
   SimpleForm,
   TextInput,
-  FileInput,
   FileField,
   DateInput,
   DateField,
@@ -25,8 +24,7 @@ import {
 import { useRecordContext } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
 import axios from 'axios';
-import { useState, useCallback } from 'react';
-import {useFormContext} from 'react-hook-form';
+import { useState } from 'react';
 
 const episodeFilters = [
   <TextInput source="q" label="Search" alwaysOn />
@@ -42,12 +40,12 @@ export const EpisodesList = () => {
           primaryText={(record) => record.name_rm}
           secondaryText={(record) => record.name_jp}
           tertiaryText={(record) => record.image}
-          linkType={(record) => 'show'}
+          linkType={(record) => 'edit'}
         >
           <EditButton />
         </SimpleList>
       ) : (
-        <Datagrid bulkActionButtons={false} rowClick="show">
+        <Datagrid bulkActionButtons={false} rowClick="edit">
           {/* <FileToObjectField /> */}
           <FileField source="file" title='title' />
           <NumberField source="episode_number" />
@@ -73,36 +71,6 @@ const EpisodesTitle = () => {
   const record = useRecordContext();
   return record ? record.name_rm : '';
 };
-
-const FileToObjectField = () => {
-  const record = useRecordContext();
-  if (!record) return null;
-  if (!record.file) return null;
-  console.log(record.file)
-  const fileObject = JSON.parse(record.file);
-
-  return <FileField source="file" title="title" />;
-};
-
-const FileToObjectInput = () => {
-  const record = useRecordContext();
-  if (!record) return null;
-  if (!record.file)
-    return <FileInput source="file">
-      <FileField source="src" title="title" />
-    </FileInput>
-  const fileObject = JSON.parse(record.file);
-
-  return <FileInput source="file" />;
-};
-
-const HandleSubmit = () => {
-  const fileElement = document.getElementById('fileInput')
-  let file = fileElement.files[0];
-  let formData = new FormData();
-  formData.set('file', file);
-  axios.post('http://nananijiarchiveproject.test/img', formData)
-}
 
 export const EpisodesShow = () => (
   <Show title={<EpisodesTitle />} disableAuthentication>
@@ -145,14 +113,16 @@ export const EpisodesEdit = () => {
     e.preventDefault();
 
     const formdata = new FormData();
-    
-    if(file.file){
 
-    formdata.append('file', file.file, file.filename);
-    axios.post('http://nananijiarchiveproject.test/api/upload', formdata)
-      .then(response => {
-        setFilepath(`http://nananijiarchiveproject.test/${response.data}`)}
-      )
+    if (file.file) {
+
+      formdata.append('file', file.file, file.filename);
+      axios.post('http://nananijiarchiveproject.test/api/upload', formdata)
+        .then(response => {
+          alert('file uploaded correctly')
+          setFilepath(response.data)
+        }
+        )
     }
   }
 
@@ -160,12 +130,12 @@ export const EpisodesEdit = () => {
     <Edit title={<EpisodesTitle />}>
       <SimpleForm>
         <TextInput source="id" disabled />
-        <ReferenceInput source="tvshows_id" reference="tvshows">
+        <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={0}>
           <AutocompleteInput optionText="name_rm" />
         </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
-        <TextInput source='file' value={null} defaultValue={filepath} />
+        <TextInput source='file' defaultValue={filepath}/>{/* validate={required()} hidden */}
         <NumberInput source="episode_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
         <TextInput source="name_jp" />
@@ -203,11 +173,14 @@ export const EpisodesCreate = () => {
     const formdata = new FormData();
     const fileblob = `http://nananijiarchiveproject.test/app/fileuploads/${file.name}`
 
-    formdata.append('file', file.file, fileblob, file.filename);
-    axios.post('http://nananijiarchiveproject.test/api/upload', formdata)
-      .then(response => {
-        setFilepath(`http://nananijiarchiveproject.test/${response.data}`)}
-      )
+    if (file.file) {
+      formdata.append('file', file.file, fileblob, file.filename);
+      axios.post('http://nananijiarchiveproject.test/api/upload', formdata)
+        .then(response => {
+          setFilepath(response.data)
+        }
+        )
+    }
   }
 
   return (
@@ -218,7 +191,7 @@ export const EpisodesCreate = () => {
         </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
-        <TextInput source='file' defaultValue={filepath} />
+        <TextInput source='file' defaultValue={filepath} disabled />{/* validate={required()} hidden */}
         <NumberInput source="episode_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
         <TextInput source="name_jp" />
