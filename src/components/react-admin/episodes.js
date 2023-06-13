@@ -25,7 +25,8 @@ import {
 import { useRecordContext } from 'react-admin';
 import { useMediaQuery } from '@mui/material';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import {useFormContext} from 'react-hook-form';
 
 const episodeFilters = [
   <TextInput source="q" label="Search" alwaysOn />
@@ -101,17 +102,12 @@ const HandleSubmit = () => {
   let formData = new FormData();
   formData.set('file', file);
   axios.post('http://nananijiarchiveproject.test/img', formData)
-    .then(res => {
-      console.log(res)
-    })
-  console.log(fileElement.files[0])
-
 }
 
 export const EpisodesShow = () => (
   <Show title={<EpisodesTitle />} disableAuthentication>
     <SimpleForm>
-      <FileToObjectField />
+      <FileField source="file" title='title' />
       <NumberField source="episode_number" />
       <TextField source="name_rm" />
       <TextField source="name_jp" />
@@ -144,18 +140,20 @@ export const EpisodesEdit = () => {
       filename: e.target.files[0].name
     });
   }
+
   const sendHandler = e => {
     e.preventDefault();
-    
-    const formdata = new FormData();
-    const fileblob = `http://nananijiarchiveproject.test/app/fileuploads/${file.name}`
 
-    formdata.append('file', file.file , fileblob, file.filename);
-    axios.post('http://nananijiarchiveproject.test/api/upload', formdata, {
-      onUploadProgress: progressEvent => {
-        console.log(`Upload progress:  ${Math.round(progressEvent.load / progressEvent.total * 100)} %`)
-      }
-    })
+    const formdata = new FormData();
+    
+    if(file.file){
+
+    formdata.append('file', file.file, file.filename);
+    axios.post('http://nananijiarchiveproject.test/api/upload', formdata)
+      .then(response => {
+        setFilepath(`http://nananijiarchiveproject.test/${response.data}`)}
+      )
+    }
   }
 
   return (
@@ -163,6 +161,59 @@ export const EpisodesEdit = () => {
       <SimpleForm>
         <TextInput source="id" disabled />
         <ReferenceInput source="tvshows_id" reference="tvshows">
+          <AutocompleteInput optionText="name_rm" />
+        </ReferenceInput>
+        <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
+        <button onClick={sendHandler}>Upload</button>
+        <TextInput source='file' value={null} defaultValue={filepath} />
+        <NumberInput source="episode_number" validate={required()} min={1} />
+        <TextInput source="name_rm" validate={required()} />
+        <TextInput source="name_jp" />
+        <TextInput source="name_en" />
+        <TextInput source="format" validate={required()} />
+        <TextInput source="resolution" validate={required()} />
+        <DateInput source="release_date" validate={required()} />
+        <TextInput source="type" validate={required()} />
+        <TextInput source="duration" validate={required()} />
+      </SimpleForm>
+    </Edit>
+  )
+};
+
+export const EpisodesCreate = () => {
+  const initialvaluesinput = {
+    file: null,
+    filename: '',
+    fileURL: ''
+  }
+
+  const [file, setFile] = useState(initialvaluesinput);
+  const [filepath, setFilepath] = useState(null);
+
+  const fileSelectHandler = (e) => {
+    setFile({
+      file: e.target.files[0],
+      filename: e.target.files[0].name
+    });
+  }
+
+  const sendHandler = e => {
+    e.preventDefault();
+
+    const formdata = new FormData();
+    const fileblob = `http://nananijiarchiveproject.test/app/fileuploads/${file.name}`
+
+    formdata.append('file', file.file, fileblob, file.filename);
+    axios.post('http://nananijiarchiveproject.test/api/upload', formdata)
+      .then(response => {
+        setFilepath(`http://nananijiarchiveproject.test/${response.data}`)}
+      )
+  }
+
+  return (
+    <Create>
+      <SimpleForm>
+        <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={0}>
           <AutocompleteInput optionText="name_rm" />
         </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
@@ -178,28 +229,6 @@ export const EpisodesEdit = () => {
         <TextInput source="type" validate={required()} />
         <TextInput source="duration" validate={required()} />
       </SimpleForm>
-    </Edit>
+    </Create>
   )
 };
-
-export const EpisodesCreate = () => (
-  <Create>
-    <SimpleForm>
-      <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={0}>
-        <AutocompleteInput optionText="name_rm" />
-      </ReferenceInput>
-      <FileInput source="file">
-        <FileField source="src" title="title" />
-      </FileInput>
-      <NumberInput source="episode_number" validate={required()} min={1} />
-      <TextInput source="name_rm" validate={required()} />
-      <TextInput source="name_jp" />
-      <TextInput source="name_en" />
-      <TextInput source="format" validate={required()} />
-      <TextInput source="resolution" validate={required()} />
-      <DateInput source="release_date" validate={required()} />
-      <TextInput source="type" validate={required()} />
-      <TextInput source="duration" validate={required()} />
-    </SimpleForm>
-  </Create>
-);
