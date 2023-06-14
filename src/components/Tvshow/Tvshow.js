@@ -15,13 +15,13 @@ const TvshowDetails = (props) => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'a.jpg');
+      link.setAttribute('download', props.filename);
       document.body.appendChild(link);
       link.click();
     })
   }
 
-  const imagepath = () => {
+  const imagePath = () => {
     if (props.image) {
       const path = `http://nananijiarchiveproject.test/${props.image}`;
       return path;
@@ -34,7 +34,7 @@ const TvshowDetails = (props) => {
       <figure className='figura'>
 
         <Link to={`/tvshows/${props.id}`}>
-          <img className='border' src={imagepath()} alt='Personaje'></img>
+          <img className='border' src={imagePath()} alt='Personaje'></img>
         </Link>
         <figcaption className='figura'>{props.name_rm} | {props.name_jp}</figcaption>
         <p>{props.name_rm} | {props.start_date} | {props.episodes}</p>

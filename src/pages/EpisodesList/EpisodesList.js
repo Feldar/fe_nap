@@ -15,24 +15,25 @@ const EpisodesList = (props) => {
   const [ordenAlfabetico, setOrdenAlfabetico] = useState(0);
 
   function showEpisode(episode) {
-    if(episode.tvshows_id == props.tvshow_id){
-    return <Episode
-      key={episode.id}
-      id={episode.id}
-      episode_number={episode.episode_number}
-      name_rm={episode.name_rm}
-      name_jp={episode.name_jp}
-      name_en={episode.name_en}
-      format={episode.format}
-      resolution={episode.resolution}
-      release_date={episode.release_date}
-      type={episode.type}
-      duration={episode.duration}
-      file={episode.file}
-      filename={episode.filename}
-      image={episode.image}
-      imagename={episode.imagename}>
-    </Episode>;
+    if (episode.tvshows_id == props.tvshow_id) {
+      return <Episode
+        key={episode.id}
+        id={episode.id}
+        episode_number={episode.episode_number}
+        name_rm={episode.name_rm}
+        name_jp={episode.name_jp}
+        name_en={episode.name_en}
+        format={episode.format}
+        resolution={episode.resolution}
+        release_date={episode.release_date}
+        type={episode.type}
+        duration={episode.duration}
+        file={episode.file}
+        filename={episode.filename}
+        image={episode.image}
+        imagename={episode.imagename}
+        tvshow_id={props.tvshow_id}>
+      </Episode>;
     }
   }
 

@@ -15,7 +15,7 @@ const TvshowView = (props) => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'a.jpg');
+      link.setAttribute('download', props.filename);
       document.body.appendChild(link);
       link.click();
     })
