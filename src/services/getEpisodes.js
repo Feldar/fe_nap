@@ -8,10 +8,10 @@ export function getEpisodes() {
       const { data } = response
       const episodes = data.map(episodesInfo => {
         const { id, episode_number, name_rm, name_jp, name_en, format, resolution, 
-          release_date, type, duration, file, tvshows_id } = 
+          release_date, type, duration, file, filename, image, imagename, tvshows_id } = 
         episodesInfo.attributes
         return { id, episode_number, name_rm, name_jp, name_en, format, resolution,
-          release_date, type, duration, file, tvshows_id };
+          release_date, type, duration, file, filename, image, imagename, tvshows_id };
       })
 
       return episodes

@@ -29,7 +29,9 @@ const EpisodesList = (props) => {
       type={episode.type}
       duration={episode.duration}
       file={episode.file}
-      tvshows_id={episode.tvshows_id}>
+      filename={episode.filename}
+      image={episode.image}
+      imagename={episode.imagename}>
     </Episode>;
     }
   }

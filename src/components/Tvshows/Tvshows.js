@@ -17,7 +17,6 @@ const Tvshows = function () {
         <AjaxLoader loader={imageLoader}></AjaxLoader> :
         <TvshowsList tvshowsList={tvshowsList} setPage={setPage} page={page}></TvshowsList>
       }
-        
       <Contacto />
       <Footer />
     </div>

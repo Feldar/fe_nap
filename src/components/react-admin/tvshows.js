@@ -11,6 +11,7 @@ import {
   TextInput,
   ImageField,
   ImageInput,
+  FileField,
   DateInput,
   DateField,
   SelectInput,
@@ -31,6 +32,16 @@ const tvshowsFilters = [
 export const TvshowsList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
+  const ImageName = () => {
+    const record = useRecordContext();
+    if(record.imagename){
+    return <FileField source="image" title="title" Label={record.imagename} />
+    }
+    else {
+      return <FileField source="image" title="title" Label="Image" />
+    }
+  }
+
   return (
     <List filters={tvshowsFilters} >
       {isSmall ? (
@@ -44,7 +55,7 @@ export const TvshowsList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="edit">
-          <ImageField source="image" title="title" />
+          <ImageName />
           <TextField source="name_jp" />
           <TextField source="name_rm" />
           <TextField source="name_en" />
@@ -119,7 +130,7 @@ export const TvshowsEdit = () => {
         <TextInput source="id" disabled />
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
-        <TextInput source='file' defaultValue={filepath} resettable />
+        <TextInput source='image' defaultValue={filepath} resettable />
         <TextInput source="name_jp" validate={required()} />
         <TextInput source="name_rm" validate={required()} />
         <TextInput source="name_en" />
@@ -174,7 +185,7 @@ export const TvshowsCreate = () => {
       <SimpleForm>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
-        <TextInput source='file' defaultValue={filepath} />
+        <TextInput source='image' defaultValue={filepath} />
         <TextInput source="name_jp" validate={required()} />
         <TextInput source="name_rm" validate={required()} />
         <TextInput source="name_en" />

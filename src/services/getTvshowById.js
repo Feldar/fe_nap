@@ -5,8 +5,10 @@ export function getTvshowById(tvshowid) {
   return fetch(apiURL)
     .then(response => response.json())
     .then(response => {
-      const { id, name_rm, name_jp, name_en, image, start_date, end_date, episodes, status } =
+      const { id, name_rm, name_jp, name_en, file, filename, 
+        image, imagename, start_date, end_date, episodes, status } =
         response.data.attributes
-      return { id, name_rm, name_jp, name_en, image, start_date, end_date, episodes, status };
+      return { id, name_rm, name_jp, name_en, file, filename, 
+        image, imagename, start_date, end_date, episodes, status };
     })
 }

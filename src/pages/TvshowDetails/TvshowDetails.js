@@ -23,14 +23,17 @@ const TvshowDetails = () => {
           name_rm={tvshow.name_rm}
           name_jp={tvshow.name_jp}
           name_en={tvshow.name_en}
+          file={tvshow.file}
+          filename={tvshow.filename}
           image={tvshow.image}
+          imagename={tvshow.imagename}
           start_date={tvshow.start_date}
           end_date={tvshow.end_date}
           episodes={tvshow.episodes}
           status={tvshow.status}
         >
         </TvshowView>}
-        <Episodes tvshow_id={id} />
+        <Episodes tvshow_id={id} tvshow_image={tvshow.image} />
       <Contacto />
       <Footer />
     </div>
