@@ -14,14 +14,14 @@ const EpisodeDetails = (props) => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'a.jpg');
+      link.setAttribute('download', props.filename);
       document.body.appendChild(link);
       link.click();
     })
   }
 
-  const filepath = () => {
-    if(props.file){
+  const imagePath = () => {
+    if(props.tvshow_image){
     const path = `http://nananijiarchiveproject.test/${props.file}`;
     return path;
     }
@@ -31,7 +31,7 @@ const EpisodeDetails = (props) => {
     <div className='col border d-flex justify-content-center'>
       <figure className='figura'>
         <figcaption className='figura'>{props.name_rm}</figcaption>
-        <img className='border' src={filepath()} alt='Personaje'></img>
+        <img className='border' src={imagePath} alt='Personaje'></img>
         <p>Episode {props.episode_number}</p>
         <p>Type: {props.type}</p>
         <p>Format: {props.format}</p>

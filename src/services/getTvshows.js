@@ -7,9 +7,11 @@ export function getTvshows() {
     .then(response => {
       const { data } = response
       const tvshows = data.map(tvshowInfo => {
-        const { id, name_rm, name_jp, name_en, image, start_date, end_date, episodes, status } = 
+        const { id, name_rm, name_jp, name_en, file, filename, 
+          image, imagename, start_date, end_date, episodes, status } = 
         tvshowInfo.attributes
-        return { id, name_rm, name_jp, name_en, image, start_date, end_date, episodes, status };
+        return { id, name_rm, name_jp, name_en, file, filename, 
+          image, imagename, start_date, end_date, episodes, status };
       })
 
       return tvshows

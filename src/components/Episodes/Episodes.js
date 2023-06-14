@@ -14,7 +14,12 @@ const Episodes = function (props) {
     <div className='tvshows'>
       {searching ?
         <AjaxLoader loader={imageLoader}></AjaxLoader> :
-        <EpisodesList episodesList={episodesList} setPage={setPage} page={page} tvshow_id={props.tvshow_id} />
+        <EpisodesList 
+          episodesList={episodesList} 
+          setPage={setPage} 
+          page={page} 
+          tvshow_id={props.tvshow_id}
+        />
       }
     </div>
   );

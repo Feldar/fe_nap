@@ -101,6 +101,7 @@ export const EpisodesEdit = () => {
 
   const [file, setFile] = useState(initialvaluesinput);
   const [filepath, setFilepath] = useState(null);
+  const [fileName, setFileName] = useState(null);
 
   const fileSelectHandler = (e) => {
     setFile({
@@ -121,6 +122,7 @@ export const EpisodesEdit = () => {
         .then(response => {
           alert('file uploaded correctly')
           setFilepath(response.data)
+          setFileName(file.filename)
         }
         )
     }
@@ -135,7 +137,11 @@ export const EpisodesEdit = () => {
         </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
+        {/* ocultar y requerir */}
         <TextInput source='file' defaultValue={filepath}/>{/* validate={required()} hidden */}
+        <TextInput source="filename" defaultValue={fileName}/>
+
+        {/* ocultar y requerir */}
         <NumberInput source="episode_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
         <TextInput source="name_jp" />
@@ -158,7 +164,8 @@ export const EpisodesCreate = () => {
   }
 
   const [file, setFile] = useState(initialvaluesinput);
-  const [filepath, setFilepath] = useState(null);
+  const [filePath, setFilePath] = useState(null);
+  const [fileName, setFileName] = useState(null);
 
   const fileSelectHandler = (e) => {
     setFile({
@@ -177,7 +184,8 @@ export const EpisodesCreate = () => {
       formdata.append('file', file.file, fileblob, file.filename);
       axios.post('http://nananijiarchiveproject.test/api/upload', formdata)
         .then(response => {
-          setFilepath(response.data)
+          setFilePath(response.data)
+          setFileName(file.filename)
         }
         )
     }
@@ -191,7 +199,10 @@ export const EpisodesCreate = () => {
         </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
-        <TextInput source='file' defaultValue={filepath} disabled />{/* validate={required()} hidden */}
+        {/* ocultar y requerir */}
+        <TextInput source='file' defaultValue={filePath} disabled />{/* validate={required()} hidden */}
+        <TextInput source="filename" defaultValue={fileName}/>
+        {/* ocultar y requerir */}
         <NumberInput source="episode_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
         <TextInput source="name_jp" />
