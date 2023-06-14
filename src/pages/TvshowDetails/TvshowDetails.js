@@ -12,7 +12,6 @@ import Episodes from 'components/Episodes/Episodes';
 const TvshowDetails = () => {
   const { id } = useParams();
   const { searching, tvshow } = useTvshow(id);
-
   return (
     <div>
       <Header />

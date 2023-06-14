@@ -99,6 +99,7 @@ export const TvshowsEdit = () => {
 
   const [file, setFile] = useState(initialvaluesinput);
   const [filepath, setFilepath] = useState(null);
+  const [fileName, setFileName] = useState(null);
 
   const fileSelectHandler = (e) => {
     setFile({
@@ -117,8 +118,8 @@ export const TvshowsEdit = () => {
       formdata.append('file', file.file, file.filename);
       axios.post('http://nananijiarchiveproject.test/api/upload', formdata)
         .then(response => {
-          alert('file uploaded correctly')
           setFilepath(response.data)
+          setFileName(file.filename)
         }
         )
     }
@@ -130,7 +131,8 @@ export const TvshowsEdit = () => {
         <TextInput source="id" disabled />
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
-        <TextInput source='image' defaultValue={filepath} resettable />
+        <TextInput source='image' defaultValue={filepath}/>{/* validate={required()} hidden */}
+        <TextInput source="imagename" defaultValue={fileName}/>
         <TextInput source="name_jp" validate={required()} />
         <TextInput source="name_rm" validate={required()} />
         <TextInput source="name_en" />
@@ -156,6 +158,7 @@ export const TvshowsCreate = () => {
 
   const [file, setFile] = useState(initialvaluesinput);
   const [filepath, setFilepath] = useState(null);
+  const [fileName, setFileName] = useState(null);
 
   const fileSelectHandler = (e) => {
     setFile({
@@ -175,8 +178,8 @@ export const TvshowsCreate = () => {
       axios.post('http://nananijiarchiveproject.test/api/upload', formdata)
         .then(response => {
           setFilepath(response.data)
-        }
-        )
+          setFileName(file.filename)
+        })
     }
   }
 
@@ -185,7 +188,8 @@ export const TvshowsCreate = () => {
       <SimpleForm>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
-        <TextInput source='image' defaultValue={filepath} />
+        <TextInput source='image' defaultValue={filepath}/>{/* validate={required()} hidden */}
+        <TextInput source="imagename" defaultValue={fileName}/>
         <TextInput source="name_jp" validate={required()} />
         <TextInput source="name_rm" validate={required()} />
         <TextInput source="name_en" />

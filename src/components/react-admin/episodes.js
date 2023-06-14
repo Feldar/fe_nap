@@ -202,6 +202,7 @@ export const EpisodesCreate = () => {
         {/* ocultar y requerir */}
         <TextInput source='file' defaultValue={filePath} disabled />{/* validate={required()} hidden */}
         <TextInput source="filename" defaultValue={fileName}/>
+        <TextInput source="image" defaultValue='files/22-7-video.jpg'  />
         {/* ocultar y requerir */}
         <NumberInput source="episode_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
