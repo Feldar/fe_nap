@@ -13,9 +13,7 @@ import {
   DateInput,
   DateField,
   SelectInput,
-  required,
-  NumberInput,
-  NumberField
+  required
 } from 'react-admin';
 
 import { useRecordContext } from 'react-admin';
@@ -184,27 +182,25 @@ export const ArtistsCreate = () => {
   return (
     <Create>
       <SimpleForm>
-        <SimpleForm>
-          <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
-          <button onClick={sendHandler}>Upload</button>
-          {/* ocultar y requerir */}
-          <TextInput source='image' defaultValue={filePath} disabled validate={required()} />
-          {/* ocultar y requerir */}
-          <TextInput source="name_rm" validate={required()} />
-          <TextInput source="name_jp" validate={required()} />
-          <TextInput source="profile_page" validate={required()} />
-          <TextInput source="blog" />
-          <TextInput source="twitter_account" />
-          <TextInput source="tiktok_account" />
-          <TextInput source="instagram_account" />
-          <TextInput source="youtube_account" />
-          <DateInput source="join_date" validate={required()} />
-          <DateInput source="graduation_date" />
-          <SelectInput source="status" validate={required()} choices={[
-            { id: 'Active', name: 'Active' },
-            { id: 'Graduated', name: 'Graduated' }
-          ]} />
-        </SimpleForm>
+        <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
+        <button onClick={sendHandler}>Upload</button>
+        {/* ocultar y requerir */}
+        <TextInput source='image' defaultValue={filePath} disabled validate={required()} />
+        {/* ocultar y requerir */}
+        <TextInput source="name_rm" validate={required()} />
+        <TextInput source="name_jp" validate={required()} />
+        <TextInput source="profile_page" validate={required()} />
+        <TextInput source="blog" />
+        <TextInput source="twitter_account" />
+        <TextInput source="tiktok_account" />
+        <TextInput source="instagram_account" />
+        <TextInput source="youtube_account" />
+        <DateInput source="join_date" validate={required()} />
+        <DateInput source="graduation_date" />
+        <SelectInput source="status" validate={required()} choices={[
+          { id: 'Active', name: 'Active' },
+          { id: 'Graduated', name: 'Graduated' }
+        ]} />
       </SimpleForm>
     </Create>
   )

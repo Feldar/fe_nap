@@ -9,15 +9,12 @@ import {
   Create,
   SimpleForm,
   TextInput,
-  FileField,
+  ImageField,
   DateInput,
   DateField,
   SelectInput,
   required,
-  NumberInput,
-  NumberField,
   ReferenceInput,
-  ReferenceField,
   AutocompleteInput
 } from 'react-admin';
 
@@ -47,19 +44,17 @@ export const CharactersList = () => {
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="edit">
           {/* <FileToObjectField /> */}
-          <FileField source="file" title='title' />
-          <NumberField source="episode_number" />
+          <ImageField source="image" title='title' />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
-          <TextField source="name_en" />
-          <TextField source="format" />
-          <TextField source="resolution" />
-          <DateField source="release_date" />
-          <TextField source="type" />
-          <TextField source="duration" />
-          <ReferenceField source="tvshows_id" reference="tvshows" link="show">
-            <TextField source="name_rm" />
-          </ReferenceField>
+          <TextField source="profile_page" />
+          <TextField source="blog" />
+          <TextField source="twitter_account" />
+          <TextField source="instagram_account" />
+          <TextField source="youtube_account" />
+          <DateField source="join_date" />
+          <DateField source="graduation_date" />
+          <TextField source="status" />
           <EditButton />
         </Datagrid>
       )}
@@ -75,19 +70,17 @@ const CharactersTitle = () => {
 export const CharactersShow = () => (
   <Show title={<CharactersTitle />} disableAuthentication>
     <SimpleForm>
-      <FileField source="file" title='title' />
-      <NumberField source="episode_number" />
+      <ImageField source="image" title='title' />
       <TextField source="name_rm" />
       <TextField source="name_jp" />
-      <TextField source="name_en" />
-      <TextField source="format" />
-      <TextField source="resolution" />
-      <DateField source="release_date" />
-      <TextField source="type" />
-      <TextField source="duration" />
-      <ReferenceField label="Tv show" source="tvshows_id" reference="tvshows" link="show">
-        <TextField source="name_rm" />
-      </ReferenceField>
+      <TextField source="profile_page" />
+      <TextField source="blog" />
+      <TextField source="twitter_account" />
+      <TextField source="instagram_account" />
+      <TextField source="youtube_account" />
+      <DateField source="join_date" />
+      <DateField source="graduation_date" />
+      <TextField source="status" />
     </SimpleForm>
   </Show>
 );
@@ -100,7 +93,7 @@ export const CharactersEdit = () => {
   }
 
   const [file, setFile] = useState(initialvaluesinput);
-  const [filepath, setFilepath] = useState(null);
+  const [filePath, setFilepath] = useState(null);
   const [fileName, setFileName] = useState(null);
 
   const fileSelectHandler = (e) => {
@@ -129,28 +122,28 @@ export const CharactersEdit = () => {
   }
 
   return (
-    <Edit title={<CharactersTitle />}>
+    <Edit >
       <SimpleForm>
-        <TextInput source="id" disabled />
-        <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={0}>
-          <AutocompleteInput optionText="name_rm" />
+        <ReferenceInput source="artist_id" reference="artists"  defaultValue={1}>
+          <AutocompleteInput optionText="name_rm" validate={required()} />
         </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
         {/* ocultar y requerir */}
-        <TextInput source='file' defaultValue={filepath}/>{/* validate={required()} hidden */}
-        <TextInput source="filename" defaultValue={fileName}/>
-
+        <TextInput source='image' defaultValue={filePath} disabled validate={required()} />
         {/* ocultar y requerir */}
-        <NumberInput source="episode_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
-        <TextInput source="name_jp" />
-        <TextInput source="name_en" />
-        <TextInput source="format" validate={required()} />
-        <TextInput source="resolution" validate={required()} />
-        <DateInput source="release_date" validate={required()} />
-        <TextInput source="type" validate={required()} />
-        <TextInput source="duration" validate={required()} />
+        <TextInput source="name_jp" validate={required()} />
+        <TextInput source="profile_page" validate={required()} />
+        <TextInput source="twitter_account" />
+        <TextInput source="youtube_account" />
+        <TextInput source="color" validate={required()} />
+        <DateInput source="join_date" validate={required()} />
+        <DateInput source="graduation_date" />
+        <SelectInput source="status" validate={required()} choices={[
+          { id: 'Active', name: 'Active' },
+          { id: 'Graduated', name: 'Graduated' }
+        ]} />
       </SimpleForm>
     </Edit>
   )
@@ -194,25 +187,26 @@ export const CharactersCreate = () => {
   return (
     <Create>
       <SimpleForm>
-        <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={1}>
-          <AutocompleteInput optionText="name_rm" />
+        <ReferenceInput source="artist_id" reference="artists"  defaultValue={1}>
+          <AutocompleteInput optionText="name_rm" validate={required()} />
         </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
         {/* ocultar y requerir */}
-        <TextInput source='file' defaultValue={filePath} disabled />{/* validate={required()} hidden */}
-        <TextInput source="filename" defaultValue={fileName}/>
-        <TextInput source="image" defaultValue='files/22-7-video.jpg'  />
+        <TextInput source='image' defaultValue={filePath} disabled validate={required()} />
         {/* ocultar y requerir */}
-        <NumberInput source="episode_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
-        <TextInput source="name_jp" />
-        <TextInput source="name_en" />
-        <TextInput source="format" validate={required()} />
-        <TextInput source="resolution" validate={required()} />
-        <DateInput source="release_date" validate={required()} />
-        <TextInput source="type" validate={required()} />
-        <TextInput source="duration" validate={required()} />
+        <TextInput source="name_jp" validate={required()} />
+        <TextInput source="profile_page" validate={required()} />
+        <TextInput source="twitter_account" />
+        <TextInput source="youtube_account" />
+        <TextInput source="color" validate={required()} />
+        <DateInput source="join_date" validate={required()} />
+        <DateInput source="graduation_date" />
+        <SelectInput source="status" validate={required()} choices={[
+          { id: 'Active', name: 'Active' },
+          { id: 'Graduated', name: 'Graduated' }
+        ]} />
       </SimpleForm>
     </Create>
   )
