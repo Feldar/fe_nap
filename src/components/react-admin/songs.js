@@ -46,20 +46,14 @@ export const SongsList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="edit">
-          {/* <FileToObjectField /> */}
-          <FileField source="file" title='title' />
-          <NumberField source="episode_number" />
-          <TextField source="name_rm" />
-          <TextField source="name_jp" />
-          <TextField source="name_en" />
-          <TextField source="format" />
-          <TextField source="resolution" />
-          <DateField source="release_date" />
-          <TextField source="type" />
-          <TextField source="duration" />
-          <ReferenceField source="tvshows_id" reference="tvshows" link="show">
+          <ReferenceField label="Album" source="album_id" reference="albums" link="edit">
             <TextField source="name_rm" />
           </ReferenceField>
+          <FileField source="file" title='title' />
+          <NumberField source="song_number" />
+          <TextField source="name_rm" />
+          <TextField source="name_jp" />
+          <NumberField source="duration" />
           <EditButton />
         </Datagrid>
       )}
@@ -75,19 +69,14 @@ const SongsTitle = () => {
 export const SongsShow = () => (
   <Show title={<SongsTitle />} disableAuthentication>
     <SimpleForm>
-      <FileField source="file" title='title' />
-      <NumberField source="episode_number" />
-      <TextField source="name_rm" />
-      <TextField source="name_jp" />
-      <TextField source="name_en" />
-      <TextField source="format" />
-      <TextField source="resolution" />
-      <DateField source="release_date" />
-      <TextField source="type" />
-      <TextField source="duration" />
-      <ReferenceField label="Tv show" source="tvshows_id" reference="tvshows" link="show">
+      <ReferenceField label="Album" source="album_id" reference="albums" link="edit">
         <TextField source="name_rm" />
       </ReferenceField>
+      <FileField source="file" title='title' />
+      <NumberField source="song_number" />
+      <TextField source="name_rm" />
+      <TextField source="name_jp" />
+      <NumberField source="duration" />
     </SimpleForm>
   </Show>
 );
@@ -100,7 +89,7 @@ export const SongsEdit = () => {
   }
 
   const [file, setFile] = useState(initialvaluesinput);
-  const [filepath, setFilepath] = useState(null);
+  const [filePath, setFilepath] = useState(null);
   const [fileName, setFileName] = useState(null);
 
   const fileSelectHandler = (e) => {
@@ -129,27 +118,20 @@ export const SongsEdit = () => {
   }
 
   return (
-    <Edit title={<SongsTitle />}>
+    <Edit >
       <SimpleForm>
-        <TextInput source="id" disabled />
-        <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={0}>
-          <AutocompleteInput optionText="name_rm" />
+        <ReferenceInput source="album_id" reference="albums"  defaultValue={1}>
+          <AutocompleteInput optionText="name_rm" validate={required()} />
         </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
         {/* ocultar y requerir */}
-        <TextInput source='file' defaultValue={filepath}/>{/* validate={required()} hidden */}
-        <TextInput source="filename" defaultValue={fileName}/>
-
+        <TextInput source='file' defaultValue={filePath} validate={required()}/>{/*  hidden */}
+        <TextInput source="filename" defaultValue={fileName} validate={required()}/>
         {/* ocultar y requerir */}
-        <NumberInput source="episode_number" validate={required()} min={1} />
+        <NumberInput source="song_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
-        <TextInput source="name_jp" />
-        <TextInput source="name_en" />
-        <TextInput source="format" validate={required()} />
-        <TextInput source="resolution" validate={required()} />
-        <DateInput source="release_date" validate={required()} />
-        <TextInput source="type" validate={required()} />
+        <TextInput source="name_jp" validate={required()} />
         <TextInput source="duration" validate={required()} />
       </SimpleForm>
     </Edit>
@@ -194,24 +176,18 @@ export const SongsCreate = () => {
   return (
     <Create>
       <SimpleForm>
-        <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={1}>
-          <AutocompleteInput optionText="name_rm" />
+        <ReferenceInput source="album_id" reference="albums"  defaultValue={1}>
+          <AutocompleteInput optionText="name_rm" validate={required()} />
         </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
         {/* ocultar y requerir */}
-        <TextInput source='file' defaultValue={filePath} disabled />{/* validate={required()} hidden */}
-        <TextInput source="filename" defaultValue={fileName}/>
-        <TextInput source="image" defaultValue='files/22-7-video.jpg'  />
+        <TextInput source='file' defaultValue={filePath} validate={required()}/>{/*  hidden */}
+        <TextInput source="filename" defaultValue={fileName} validate={required()}/>
         {/* ocultar y requerir */}
-        <NumberInput source="episode_number" validate={required()} min={1} />
+        <NumberInput source="song_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
-        <TextInput source="name_jp" />
-        <TextInput source="name_en" />
-        <TextInput source="format" validate={required()} />
-        <TextInput source="resolution" validate={required()} />
-        <DateInput source="release_date" validate={required()} />
-        <TextInput source="type" validate={required()} />
+        <TextInput source="name_jp" validate={required()} />
         <TextInput source="duration" validate={required()} />
       </SimpleForm>
     </Create>

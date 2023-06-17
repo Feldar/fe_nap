@@ -46,20 +46,14 @@ export const AlbumsList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="edit">
-          {/* <FileToObjectField /> */}
-          <FileField source="file" title='title' />
-          <NumberField source="episode_number" />
+          <FileField source="image" title='title' />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
-          <TextField source="name_en" />
-          <TextField source="format" />
-          <TextField source="resolution" />
+          <NumberField source="total_songs" />
+          <NumberField source="release_price" />
+          <TextField source="media_format" />
           <DateField source="release_date" />
-          <TextField source="type" />
-          <TextField source="duration" />
-          <ReferenceField source="tvshows_id" reference="tvshows" link="show">
-            <TextField source="name_rm" />
-          </ReferenceField>
+          <NumberField source="duration" />
           <EditButton />
         </Datagrid>
       )}
@@ -75,19 +69,14 @@ const AlbumsTitle = () => {
 export const AlbumsShow = () => (
   <Show title={<AlbumsTitle />} disableAuthentication>
     <SimpleForm>
-      <FileField source="file" title='title' />
-      <NumberField source="episode_number" />
+      <FileField source="image" title='title' />
       <TextField source="name_rm" />
       <TextField source="name_jp" />
-      <TextField source="name_en" />
-      <TextField source="format" />
-      <TextField source="resolution" />
+      <NumberField source="total_songs" />
+      <NumberField source="release_price" />
+      <TextField source="media_format" />
       <DateField source="release_date" />
-      <TextField source="type" />
-      <TextField source="duration" />
-      <ReferenceField label="Tv show" source="tvshows_id" reference="tvshows" link="show">
-        <TextField source="name_rm" />
-      </ReferenceField>
+      <NumberField source="duration" />
     </SimpleForm>
   </Show>
 );
@@ -100,7 +89,7 @@ export const AlbumsEdit = () => {
   }
 
   const [file, setFile] = useState(initialvaluesinput);
-  const [filepath, setFilepath] = useState(null);
+  const [filePath, setFilepath] = useState(null);
   const [fileName, setFileName] = useState(null);
 
   const fileSelectHandler = (e) => {
@@ -129,28 +118,20 @@ export const AlbumsEdit = () => {
   }
 
   return (
-    <Edit title={<AlbumsTitle />}>
+    <Edit>
       <SimpleForm>
-        <TextInput source="id" disabled />
-        <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={0}>
-          <AutocompleteInput optionText="name_rm" />
-        </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
         {/* ocultar y requerir */}
-        <TextInput source='file' defaultValue={filepath}/>{/* validate={required()} hidden */}
-        <TextInput source="filename" defaultValue={fileName}/>
-
+        <TextInput source='image' defaultValue={filePath} disabled />{/* validate={required()} hidden */}
         {/* ocultar y requerir */}
-        <NumberInput source="episode_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
-        <TextInput source="name_jp" />
-        <TextInput source="name_en" />
-        <TextInput source="format" validate={required()} />
-        <TextInput source="resolution" validate={required()} />
+        <TextInput source="name_jp" validate={required()} />
+        <NumberInput source="total_songs" validate={required()} />
+        <NumberInput source="release_price" validate={required()} />
+        <TextInput source="media_format" validate={required()} />
         <DateInput source="release_date" validate={required()} />
-        <TextInput source="type" validate={required()} />
-        <TextInput source="duration" validate={required()} />
+        <NumberInput source="duration" validate={required()} />
       </SimpleForm>
     </Edit>
   )
@@ -194,25 +175,18 @@ export const AlbumsCreate = () => {
   return (
     <Create>
       <SimpleForm>
-        <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={1}>
-          <AutocompleteInput optionText="name_rm" />
-        </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
         {/* ocultar y requerir */}
-        <TextInput source='file' defaultValue={filePath} disabled />{/* validate={required()} hidden */}
-        <TextInput source="filename" defaultValue={fileName}/>
-        <TextInput source="image" defaultValue='files/22-7-video.jpg'  />
+        <TextInput source='image' defaultValue={filePath} disabled />{/* validate={required()} hidden */}
         {/* ocultar y requerir */}
-        <NumberInput source="episode_number" validate={required()} min={1} />
         <TextInput source="name_rm" validate={required()} />
-        <TextInput source="name_jp" />
-        <TextInput source="name_en" />
-        <TextInput source="format" validate={required()} />
-        <TextInput source="resolution" validate={required()} />
+        <TextInput source="name_jp" validate={required()} />
+        <NumberInput source="total_songs" validate={required()} />
+        <NumberInput source="release_price" validate={required()} />
+        <TextInput source="media_format" validate={required()} />
         <DateInput source="release_date" validate={required()} />
-        <TextInput source="type" validate={required()} />
-        <TextInput source="duration" validate={required()} />
+        <NumberInput source="duration" validate={required()} />
       </SimpleForm>
     </Create>
   )
