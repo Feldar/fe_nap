@@ -11,7 +11,6 @@ const Landing = function () {
       <Header />
       <Home></Home>
       <About></About>
-      <Contacto />
       <Footer />
     </main>
   );

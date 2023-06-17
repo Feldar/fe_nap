@@ -23,9 +23,6 @@ export const UserList = () => {
           <TextField source="username" />
           <EmailField source="email" />
           <TextField source="phone" />
-          <ReferenceField source="entrenador" reference="entrenadores">
-            <TextField source="name" />
-          </ReferenceField>
         </Datagrid>
       )}
     </List>
