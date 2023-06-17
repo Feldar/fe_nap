@@ -10,16 +10,13 @@
   transition: all 0.2s linear;
   font-family: "Montserrat", sans-serif;
 }
-.activo {
-    background-color: #000;
-  }
   
   /* Seccion Header */
   header {
     background-color: rgb(255, 255, 255);
   }
   header #lista a {
-    color: #32cad7;
+    color: #009ad4;
   }
   header #lista a:hover {
     color: rgb(98, 100, 101);
@@ -31,7 +28,7 @@
   }
   header .logo span {
     font-family: "Pattaya", sans-serif;
-    color: #32cad7;
+    color: #009ad4;
     font-size: 30px;
   }
 

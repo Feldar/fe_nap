@@ -12,10 +12,9 @@
     color: #fff;
   }
   .home .description {
-    position: absolute;
     top: 30%;
     margin: auto;
-    padding: 2em;
+    padding: 2em
   }
   .home .description h1 {
     color: #009ad480;
@@ -28,9 +27,4 @@
     font-size: 17px;
     width: 50%;
     line-height: 1.5;
-  }
-  .home .description button {
-    border: 1px solid #32cad7;
-    background: #32cad7;
-    color: #000;
   }

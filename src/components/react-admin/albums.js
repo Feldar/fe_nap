@@ -26,15 +26,15 @@ import { useMediaQuery } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
 
-const episodeFilters = [
+const albumFilters = [
   <TextInput source="q" label="Search" alwaysOn />
 ];
 
-export const EpisodesList = () => {
+export const AlbumsList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   return (
-    <List filters={episodeFilters} >
+    <List filters={albumFilters} >
       {isSmall ? (
         <SimpleList
           primaryText={(record) => record.name_rm}
@@ -67,13 +67,13 @@ export const EpisodesList = () => {
   );
 }
 
-const EpisodesTitle = () => {
+const AlbumsTitle = () => {
   const record = useRecordContext();
   return record ? record.name_rm : '';
 };
 
-export const EpisodesShow = () => (
-  <Show title={<EpisodesTitle />} disableAuthentication>
+export const AlbumsShow = () => (
+  <Show title={<AlbumsTitle />} disableAuthentication>
     <SimpleForm>
       <FileField source="file" title='title' />
       <NumberField source="episode_number" />
@@ -92,7 +92,7 @@ export const EpisodesShow = () => (
   </Show>
 );
 
-export const EpisodesEdit = () => {
+export const AlbumsEdit = () => {
   const initialvaluesinput = {
     file: null,
     filename: '',
@@ -129,7 +129,7 @@ export const EpisodesEdit = () => {
   }
 
   return (
-    <Edit title={<EpisodesTitle />}>
+    <Edit title={<AlbumsTitle />}>
       <SimpleForm>
         <TextInput source="id" disabled />
         <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={0}>
@@ -156,7 +156,7 @@ export const EpisodesEdit = () => {
   )
 };
 
-export const EpisodesCreate = () => {
+export const AlbumsCreate = () => {
   const initialvaluesinput = {
     file: null,
     filename: '',

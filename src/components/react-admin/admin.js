@@ -10,6 +10,10 @@ import { useState } from 'react';
 import { UserList } from 'components/react-admin/users';
 import { TvshowsList, TvshowsShow, TvshowsEdit, TvshowsCreate } from 'components/react-admin/tvshows'
 import { EpisodesList, EpisodesShow, EpisodesEdit, EpisodesCreate } from 'components/react-admin/episodes'
+import { CharactersList, CharactersShow, CharactersEdit, CharactersCreate } from 'components/react-admin/characters'
+import { ArtistsList, ArtistsShow, ArtistsEdit, ArtistsCreate } from 'components/react-admin/artists'
+import { AlbumsList, AlbumsShow, AlbumsEdit, AlbumsCreate } from 'components/react-admin/albums'
+import { SongsList, SongsShow, SongsEdit, SongsCreate } from 'components/react-admin/songs'
 
 import UserIcon from '@mui/icons-material/Group';
 import TvshowsIcon from '@mui/icons-material/Tv';
@@ -45,7 +49,7 @@ const RAdmin = () => {
     }
     handleDataProvider(jsonapiClient(API_URL, settings))
   }
-
+  
   return (
     <Admin
       basename="/dashboard"
@@ -60,6 +64,22 @@ const RAdmin = () => {
       <Resource name="episodes"
         list={EpisodesList} icon={TvshowsIcon} show={EpisodesShow}
         edit={EpisodesEdit} create={EpisodesCreate}/>
+
+      <Resource name="artists"
+        list={ArtistsList} icon={TvshowsIcon} show={ArtistsShow}
+        edit={ArtistsEdit} create={ArtistsCreate}/>
+
+      <Resource name="characters"
+        list={CharactersList} icon={TvshowsIcon} show={CharactersShow}
+        edit={CharactersEdit} create={CharactersCreate}/>
+
+      <Resource name="albums"
+        list={AlbumsList} icon={TvshowsIcon} show={AlbumsShow}
+        edit={AlbumsEdit} create={AlbumsCreate}/>
+        
+      <Resource name="songs"
+        list={SongsList} icon={TvshowsIcon} show={SongsShow}
+        edit={SongsEdit} create={SongsCreate}/>
 
       <Resource name="users" list={UserList} icon={UserIcon} />
 

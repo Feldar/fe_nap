@@ -25,6 +25,12 @@ function App() {
         <Route path="/tvshows" element={<Tvshows />} />
         <Route path="/tvshows/:id" element={<TvshowDetails />} />
         <Route path="/tvshows/:id/episodes/:id" element={<EpisodeDetails />} />
+        <Route path="/artists" element={<Tvshows />} />
+        <Route path="/artists/:id" element={<TvshowDetails />} />
+        <Route path="/characters" element={<Tvshows />} />
+        <Route path="/characters/:id" element={<TvshowDetails />} />
+        <Route path="/albums" element={<Tvshows />} />
+        <Route path="/albums/:id" element={<TvshowDetails />} />
         {/* <Route path="/register" element={<Register />} /> */}
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/password-reset/:token" element={<PasswordReset />} />
