@@ -7,7 +7,7 @@ import useTvshow from 'hooks/useTvshow';
 import Contacto from 'components/Landing/Contacto/contacto';
 import Footer from 'components/Landing/Footer/footer';
 import Header from 'components/Landing/Header/header';
-import Episodes from 'components/Episodes/Episodes';
+import Episodes from 'components/EpisodesList/EpisodesList';
 
 const TvshowDetails = () => {
   const { id } = useParams();

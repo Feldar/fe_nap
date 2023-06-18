@@ -4,37 +4,33 @@ import { useState } from 'react';
 // import StatusContext from '../Contextos/StatusContext';
 // import OrdenacionContext from '../Contextos/OrdenacionContext';
 // import Filtros from '../Filtros/Filtros';
-import Episode from 'components/Episode/Episode';
+import Artist from 'components/Artist/Artist';
 // import './ListaPersonajes.css';
 // import BotonesPaginas from '../BotonesPaginas/BotonesPaginas';
 
-const EpisodesList = (props) => {
+const ArtistsList = (props) => {
+
   const [seleccionGenero, setSeleccionGenero] = useState('Todos');
   const [seleccionEspecie, setSeleccionEspecie] = useState('Todos');
   const [seleccionStatus, setSeleccionStatus] = useState('Todos');
   const [ordenAlfabetico, setOrdenAlfabetico] = useState(0);
 
-  function showEpisode(episode) {
-    if (episode.tvshows_id == props.tvshow_id) {
-      return <Episode
-        key={episode.id}
-        id={episode.id}
-        episode_number={episode.episode_number}
-        name_rm={episode.name_rm}
-        name_jp={episode.name_jp}
-        name_en={episode.name_en}
-        format={episode.format}
-        resolution={episode.resolution}
-        release_date={episode.release_date}
-        type={episode.type}
-        duration={episode.duration}
-        file={episode.file}
-        filename={episode.filename}
-        image={episode.image}
-        imagename={episode.imagename}
-        tvshow_id={props.tvshow_id}>
-      </Episode>;
-    }
+  function showArtist(artist) {
+    return <Artist
+      key={artist.id}
+      id={artist.id}
+      name_rm={artist.name_rm}
+      name_jp={artist.name_jp}
+      name_en={artist.name_en}
+      file={artist.file}
+      filename={artist.filename}
+      image={artist.image}
+      imagename={artist.imagename}
+      start_date={artist.start_date}
+      end_date={artist.end_date}
+      episodes={artist.episodes}
+      status={artist.status}>
+    </Artist>;
   }
 
   function manejarSeleccionGenero(genero) {
@@ -65,9 +61,12 @@ const EpisodesList = (props) => {
     }
   }
 
-  function tvshowfilter(episode) {
-    if (props.tvshow_id === episode.tvshows_id) {
-      return episode;
+  function filtroGenero(personaje) {
+    if (seleccionGenero === 'Todos') {
+      return personaje;
+    }
+    else {
+      return personaje.gender === seleccionGenero;
     }
   }
 
@@ -100,7 +99,6 @@ const EpisodesList = (props) => {
 
   return (
     <div>
-      <h1>EPISODES</h1>
       {/* <BotonesPaginas manejarCambioPaginas={manejarCambioPaginas} pagina={props.pagina}></BotonesPaginas>
       <StatusContext.Provider value={manejarSeleccionStatus}>
         <GeneroContext.Provider value={manejarSeleccionGenero}>
@@ -111,15 +109,15 @@ const EpisodesList = (props) => {
           </EspecieContext.Provider>
         </GeneroContext.Provider>
       </StatusContext.Provider> */}
-      <div className="EpisodesList container">
-        <div className='row row-cols-3'>
+      <div className="ArtistsList container">
+        <div className='row'>
           {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
-          filter(filtroStatus).sort(ordenarAlfabeticamente).map(showTvshow)} */}
-          {props.episodesList.map(showEpisode)}
+          filter(filtroStatus).sort(ordenarAlfabeticamente).map(showArtist)} */}
+          {props.artistsList.map(showArtist)}
         </div>
       </div>
     </div>
   )
 }
 
-export default EpisodesList;
+export default ArtistsList;

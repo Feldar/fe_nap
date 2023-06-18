@@ -49,7 +49,7 @@ export const SongsList = () => {
           <ReferenceField label="Album" source="album_id" reference="albums" link="edit">
             <TextField source="name_rm" />
           </ReferenceField>
-          <FileField source="file" title='title' />
+          <FileField source="file" title='Song File' />
           <NumberField source="song_number" />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
@@ -118,7 +118,7 @@ export const SongsEdit = () => {
   }
 
   return (
-    <Edit >
+    <Edit title={<SongsTitle />}>
       <SimpleForm>
         <ReferenceInput source="album_id" reference="albums"  defaultValue={1}>
           <AutocompleteInput optionText="name_rm" validate={required()} />

@@ -15,7 +15,8 @@ import {
   SelectInput,
   required,
   ReferenceInput,
-  AutocompleteInput
+  AutocompleteInput,
+  FileField
 } from 'react-admin';
 
 import { useRecordContext } from 'react-admin';
@@ -44,7 +45,7 @@ export const CharactersList = () => {
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="edit">
           {/* <FileToObjectField /> */}
-          <ImageField source="image" title='title' />
+          <FileField source="image" title='Character picture' />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
           <TextField source="profile_page" />
@@ -122,7 +123,7 @@ export const CharactersEdit = () => {
   }
 
   return (
-    <Edit >
+    <Edit title={<CharactersTitle />}>
       <SimpleForm>
         <ReferenceInput source="artist_id" reference="artists"  defaultValue={1}>
           <AutocompleteInput optionText="name_rm" validate={required()} />
