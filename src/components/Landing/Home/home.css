@@ -1,8 +1,6 @@
 /* Seccion Home */
 .home {
-    background-image: url(../../../images/22-7_Kamisama_Datte_Kimerarenai.jpg);
     background-size: cover;
-    height: 100vh;
     /*100vh es 100% de la pantalla del usuario*/
     overflow: hidden;
     display: flex;
@@ -13,8 +11,6 @@
   }
   .home .description {
     top: 30%;
-    margin: auto;
-    padding: 2em
   }
   .home .description h1 {
     color: #009ad480;

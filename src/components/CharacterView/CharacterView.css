@@ -1,0 +1,25 @@
+.backgroundinfo {
+    background-color: #cce8efa2;
+}
+
+.characterinfoborder{
+    border-radius: 0px 15px 15px 0px ;
+    box-shadow: 5px 10px #888888;
+}
+
+.infoborders {
+    border-radius: 15px 15px 0px 0px 
+}
+
+.charactername{
+    text-shadow: 2px 2px #888888b7;
+}
+
+.characterinfotitle{
+    font-weight: bold;
+    color: #009ad4;
+}
+
+.listborders{
+    border-radius: 13px 13px 13px 13px 
+}

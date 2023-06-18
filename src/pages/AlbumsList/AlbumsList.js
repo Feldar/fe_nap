@@ -14,22 +14,19 @@ const AlbumsList = (props) => {
   const [seleccionEspecie, setSeleccionEspecie] = useState('Todos');
   const [seleccionStatus, setSeleccionStatus] = useState('Todos');
   const [ordenAlfabetico, setOrdenAlfabetico] = useState(0);
-
+  
   function showAlbum(album) {
     return <Album
       key={album.id}
       id={album.id}
+      image={album.image}
       name_rm={album.name_rm}
       name_jp={album.name_jp}
-      name_en={album.name_en}
-      file={album.file}
-      filename={album.filename}
-      image={album.image}
-      imagename={album.imagename}
-      start_date={album.start_date}
-      end_date={album.end_date}
-      episodes={album.episodes}
-      status={album.status}>
+      total_songs={album.total_songs}
+      release_price={album.release_price}
+      media_format={album.media_format}
+      release_date={album.release_date}
+      duration={album.duration}>
     </Album>;
   }
 
@@ -110,6 +107,7 @@ const AlbumsList = (props) => {
         </GeneroContext.Provider>
       </StatusContext.Provider> */}
       <div className="AlbumsList container">
+        <div className='row text-center'><h1>ALBUMS</h1></div>
         <div className='row'>
           {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
           filter(filtroStatus).sort(ordenarAlfabeticamente).map(showAlbum)} */}

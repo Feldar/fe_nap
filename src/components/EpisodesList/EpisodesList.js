@@ -16,6 +16,7 @@ const Episodes = function (props) {
           setPage={setPage} 
           page={page} 
           tvshow_id={props.tvshow_id}
+          tvshow_name={props.tvshow_name}
         />
       }
     </div>

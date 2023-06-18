@@ -4,7 +4,6 @@ import imageLoader from 'images/22-7_Logo.png';
 import ArtistView from 'components/ArtistView/ArtistView';
 import AjaxLoader from 'components/AjaxLoader/AjaxLoader';
 import useArtist from 'hooks/useArtist';
-import Contacto from 'components/Landing/Contacto/contacto';
 import Footer from 'components/Landing/Footer/footer';
 import Header from 'components/Landing/Header/header';
 
@@ -19,21 +18,19 @@ const ArtistDetails = () => {
         ? <AjaxLoader loader={imageLoader}></AjaxLoader>
         : <ArtistView
           key={artist.id}
-          artist_number={artist.artist_number}
+          image={artist.image}
           name_rm={artist.name_rm}
           name_jp={artist.name_jp}
-          name_en={artist.name_en}
-          format={artist.format}
-          resolution={artist.resolution}
-          release_date={artist.release_date}
-          type={artist.type}
-          duration={artist.duration}
-          file={artist.file}
-          filename={artist.filename}
-          image={artist.image}
-          imagename={artist.imagename}>
+          profile_page={artist.profile_page}
+          twitter_account={artist.twitter_account}
+          blog={artist.blog}
+          tiktok_account={artist.tiktok_account}
+          instagram_account={artist.instagram_account}
+          youtube_account={artist.youtube_account}
+          join_date={artist.join_date}
+          graduation_date={artist.graduation_date}
+          status={artist.status}>
         </ArtistView>}
-      <Contacto />
       <Footer />
     </div>
   )
