@@ -4,36 +4,36 @@ import { useState } from 'react';
 // import StatusContext from '../Contextos/StatusContext';
 // import OrdenacionContext from '../Contextos/OrdenacionContext';
 // import Filtros from '../Filtros/Filtros';
-import Episode from 'components/Episode/Episode';
+import Song from 'components/Song/Song';
 // import './ListaPersonajes.css';
 // import BotonesPaginas from '../BotonesPaginas/BotonesPaginas';
 
-const EpisodesList = (props) => {
+const SongsList = (props) => {
   const [seleccionGenero, setSeleccionGenero] = useState('Todos');
   const [seleccionEspecie, setSeleccionEspecie] = useState('Todos');
   const [seleccionStatus, setSeleccionStatus] = useState('Todos');
   const [ordenAlfabetico, setOrdenAlfabetico] = useState(0);
 
-  function showEpisode(episode) {
-    if (episode.tvshows_id == props.tvshow_id) {
-      return <Episode
-        key={episode.id}
-        id={episode.id}
-        episode_number={episode.episode_number}
-        name_rm={episode.name_rm}
-        name_jp={episode.name_jp}
-        name_en={episode.name_en}
-        format={episode.format}
-        resolution={episode.resolution}
-        release_date={episode.release_date}
-        type={episode.type}
-        duration={episode.duration}
-        file={episode.file}
-        filename={episode.filename}
-        image={episode.image}
-        imagename={episode.imagename}
+  function showSong(song) {
+    if (song.album_id == props.album_id) {
+      return <Song
+        key={song.id}
+        id={song.id}
+        song_number={song.song_number}
+        name_rm={song.name_rm}
+        name_jp={song.name_jp}
+        name_en={song.name_en}
+        format={song.format}
+        resolution={song.resolution}
+        release_date={song.release_date}
+        type={song.type}
+        duration={song.duration}
+        file={song.file}
+        filename={song.filename}
+        image={song.image}
+        imagename={song.imagename}
         tvshow_id={props.tvshow_id}>
-      </Episode>;
+      </Song>;
     }
   }
 
@@ -65,9 +65,9 @@ const EpisodesList = (props) => {
     }
   }
 
-  function tvshowfilter(episode) {
-    if (props.tvshow_id === episode.tvshows_id) {
-      return episode;
+  function tvshowfilter(song) {
+    if (props.tvshow_id === song.tvshows_id) {
+      return song;
     }
   }
 
@@ -111,15 +111,15 @@ const EpisodesList = (props) => {
           </EspecieContext.Provider>
         </GeneroContext.Provider>
       </StatusContext.Provider> */}
-      <div className="EpisodesList container">
+      <div className="SongsList container">
         <div className='row row-cols-3'>
           {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
           filter(filtroStatus).sort(ordenarAlfabeticamente).map(showTvshow)} */}
-          {props.episodesList.map(showEpisode)}
+          {props.songsList.map(showSong)}
         </div>
       </div>
     </div>
   )
 }
 
-export default EpisodesList;
+export default SongsList;

@@ -119,7 +119,7 @@ export const ArtistsEdit = () => {
   }
 
   return (
-    <Edit>
+    <Edit title={<ArtistsTitle />}>
       <SimpleForm>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>

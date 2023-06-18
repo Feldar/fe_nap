@@ -4,37 +4,33 @@ import { useState } from 'react';
 // import StatusContext from '../Contextos/StatusContext';
 // import OrdenacionContext from '../Contextos/OrdenacionContext';
 // import Filtros from '../Filtros/Filtros';
-import Episode from 'components/Episode/Episode';
+import Character from 'components/Character/Character';
 // import './ListaPersonajes.css';
 // import BotonesPaginas from '../BotonesPaginas/BotonesPaginas';
 
-const EpisodesList = (props) => {
+const CharactersList = (props) => {
+
   const [seleccionGenero, setSeleccionGenero] = useState('Todos');
   const [seleccionEspecie, setSeleccionEspecie] = useState('Todos');
   const [seleccionStatus, setSeleccionStatus] = useState('Todos');
   const [ordenAlfabetico, setOrdenAlfabetico] = useState(0);
 
-  function showEpisode(episode) {
-    if (episode.tvshows_id == props.tvshow_id) {
-      return <Episode
-        key={episode.id}
-        id={episode.id}
-        episode_number={episode.episode_number}
-        name_rm={episode.name_rm}
-        name_jp={episode.name_jp}
-        name_en={episode.name_en}
-        format={episode.format}
-        resolution={episode.resolution}
-        release_date={episode.release_date}
-        type={episode.type}
-        duration={episode.duration}
-        file={episode.file}
-        filename={episode.filename}
-        image={episode.image}
-        imagename={episode.imagename}
-        tvshow_id={props.tvshow_id}>
-      </Episode>;
-    }
+  function showCharacter(character) {
+    return <Character
+      key={character.id}
+      id={character.id}
+      name_rm={character.name_rm}
+      name_jp={character.name_jp}
+      name_en={character.name_en}
+      file={character.file}
+      filename={character.filename}
+      image={character.image}
+      imagename={character.imagename}
+      start_date={character.start_date}
+      end_date={character.end_date}
+      episodes={character.episodes}
+      status={character.status}>
+    </Character>;
   }
 
   function manejarSeleccionGenero(genero) {
@@ -65,9 +61,12 @@ const EpisodesList = (props) => {
     }
   }
 
-  function tvshowfilter(episode) {
-    if (props.tvshow_id === episode.tvshows_id) {
-      return episode;
+  function filtroGenero(personaje) {
+    if (seleccionGenero === 'Todos') {
+      return personaje;
+    }
+    else {
+      return personaje.gender === seleccionGenero;
     }
   }
 
@@ -100,7 +99,6 @@ const EpisodesList = (props) => {
 
   return (
     <div>
-      <h1>EPISODES</h1>
       {/* <BotonesPaginas manejarCambioPaginas={manejarCambioPaginas} pagina={props.pagina}></BotonesPaginas>
       <StatusContext.Provider value={manejarSeleccionStatus}>
         <GeneroContext.Provider value={manejarSeleccionGenero}>
@@ -111,15 +109,15 @@ const EpisodesList = (props) => {
           </EspecieContext.Provider>
         </GeneroContext.Provider>
       </StatusContext.Provider> */}
-      <div className="EpisodesList container">
-        <div className='row row-cols-3'>
+      <div className="CharactersList container">
+        <div className='row'>
           {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
-          filter(filtroStatus).sort(ordenarAlfabeticamente).map(showTvshow)} */}
-          {props.episodesList.map(showEpisode)}
+          filter(filtroStatus).sort(ordenarAlfabeticamente).map(showCharacter)} */}
+          {props.charactersList.map(showCharacter)}
         </div>
       </div>
     </div>
   )
 }
 
-export default EpisodesList;
+export default CharactersList;

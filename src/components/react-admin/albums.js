@@ -46,7 +46,7 @@ export const AlbumsList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="edit">
-          <FileField source="image" title='title' />
+          <FileField source="image" title='Album cover' />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
           <NumberField source="total_songs" />
@@ -69,7 +69,7 @@ const AlbumsTitle = () => {
 export const AlbumsShow = () => (
   <Show title={<AlbumsTitle />} disableAuthentication>
     <SimpleForm>
-      <FileField source="image" title='title' />
+      <FileField source="image" title='cover' />
       <TextField source="name_rm" />
       <TextField source="name_jp" />
       <NumberField source="total_songs" />
@@ -118,7 +118,7 @@ export const AlbumsEdit = () => {
   }
 
   return (
-    <Edit>
+    <Edit title={<AlbumsTitle />}>
       <SimpleForm>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
