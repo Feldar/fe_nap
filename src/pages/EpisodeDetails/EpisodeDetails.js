@@ -4,14 +4,13 @@ import imageLoader from 'images/22-7_Logo.png';
 import EpisodeView from 'components/EpisodeView/EpisodeView';
 import AjaxLoader from 'components/AjaxLoader/AjaxLoader';
 import useEpisode from 'hooks/useEpisode';
-import Contacto from 'components/Landing/Contacto/contacto';
 import Footer from 'components/Landing/Footer/footer';
 import Header from 'components/Landing/Header/header';
 
-const EpisodeDetails = () => {
+const EpisodeDetails = (props) => {
   const { id } = useParams();
   const { searching, episode } = useEpisode(id);
-  
+    
   return (
     <div>
       <Header />
@@ -31,9 +30,9 @@ const EpisodeDetails = () => {
           file={episode.file}
           filename={episode.filename}
           image={episode.image}
-          imagename={episode.imagename}>
+          imagename={episode.imagename}
+          tvshow_id={episode.tvshow_id}>
         </EpisodeView>}
-      <Contacto />
       <Footer />
     </div>
   )

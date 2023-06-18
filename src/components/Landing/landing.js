@@ -1,8 +1,8 @@
 import Home from './Home/home';
 import About from './About/about';
 import Header from './Header/header';
-import Contacto from './Contacto/contacto';
 import Footer from './Footer/footer';
+import Developers from './Developers/Developers';
 
 const Landing = function () {
   // JSX:
@@ -11,6 +11,7 @@ const Landing = function () {
       <Header />
       <Home></Home>
       <About></About>
+      <Developers></Developers>
       <Footer />
     </main>
   );

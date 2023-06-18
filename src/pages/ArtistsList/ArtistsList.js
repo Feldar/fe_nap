@@ -19,16 +19,17 @@ const ArtistsList = (props) => {
     return <Artist
       key={artist.id}
       id={artist.id}
+      image={artist.image}
       name_rm={artist.name_rm}
       name_jp={artist.name_jp}
-      name_en={artist.name_en}
-      file={artist.file}
-      filename={artist.filename}
-      image={artist.image}
-      imagename={artist.imagename}
-      start_date={artist.start_date}
-      end_date={artist.end_date}
-      episodes={artist.episodes}
+      profile_page={artist.profile_page}
+      twitter_account={artist.twitter_account}
+      blog={artist.blog}
+      tiktok_account={artist.tiktok_account}
+      instagram_account={artist.instagram_account}
+      youtube_account={artist.youtube_account}
+      join_date={artist.join_date}
+      graduation_date={artist.graduation_date}
       status={artist.status}>
     </Artist>;
   }
@@ -110,6 +111,7 @@ const ArtistsList = (props) => {
         </GeneroContext.Provider>
       </StatusContext.Provider> */}
       <div className="ArtistsList container">
+        <div className='row text-center'><h1>ARTISTS</h1></div>
         <div className='row'>
           {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
           filter(filtroStatus).sort(ordenarAlfabeticamente).map(showArtist)} */}

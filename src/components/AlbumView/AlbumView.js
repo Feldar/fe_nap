@@ -27,21 +27,38 @@ const AlbumView = (props) => {
       return path;
     }
   }
-
   return (
-    <div className="">
-      <figure className="">
-        <div>
-          <img className="border" src={filepath()} alt='album'></img>
-          <p>Name Japanese: <span className="">{props.name_jp}</span></p>
-          <p>Name Romaji: <span className="">{props.name_rm}</span></p>
-          {!props.name_en ? '' : <p>Name English: <span className="">{props.name_en}</span></p>}
-          <p>Start date: <span className="">{props.start_date}</span></p>
-          <p>End date: {!props.end_date ? '-' : <span className="">{props.end_date}</span>}</p>
-          <p>Total episodes: <span className="">{props.episodes}</span></p>
-          <p>Status: <span className="">{props.status}</span></p>
+    <div className="container backgroundinfo infoborders">
+      <div className="row align-items-center">
+        <div className="col-4 pt-3">
+          <figure>
+            <img className="artistimageborder" src={filepath()} alt='album'></img>
+          </figure>
         </div>
-      </figure>
+        <div className="col-8 tvshowsborder text-center" style={{ 'backgroundColor': 'white' }}>
+          <h1 className="charactername">{props.name_jp} / {props.name_rm}</h1>
+          <p>
+            <span className="characterinfotitle"> Album songs: </span>
+            <span className="">{props.total_songs}</span>
+          </p>
+          <p>
+            <span className="characterinfotitle"> Release price: </span>
+            <span className="">¥{props.release_price}</span>
+          </p>
+          <p>
+            <span className="characterinfotitle"> Media format: </span>
+            <span className="">{props.media_format}</span>
+          </p>
+          <p>
+            <span className="characterinfotitle"> Release date: </span>
+            <span className="">{props.release_date}</span>
+          </p>
+          <p>
+            <span className="characterinfotitle"> Album duration: </span>
+            <span className="">{props.duration} min</span>
+          </p>
+        </div>
+      </div>
     </div>
   )
 };

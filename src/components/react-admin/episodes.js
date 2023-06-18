@@ -47,7 +47,7 @@ export const EpisodesList = () => {
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="edit">
           {/* <FileToObjectField /> */}
-          <FileField source="file" title='title' />
+          <FileField source="file" title='Episode File' />
           <NumberField source="episode_number" />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
@@ -75,7 +75,7 @@ const EpisodesTitle = () => {
 export const EpisodesShow = () => (
   <Show title={<EpisodesTitle />} disableAuthentication>
     <SimpleForm>
-      <FileField source="file" title='title' />
+      <FileField source="file" title='file' />
       <NumberField source="episode_number" />
       <TextField source="name_rm" />
       <TextField source="name_jp" />
@@ -195,7 +195,7 @@ export const EpisodesCreate = () => {
     <Create>
       <SimpleForm>
         <ReferenceInput source="tvshows_id" reference="tvshows" defaultValue={1}>
-          <AutocompleteInput optionText="name_rm" />
+          <AutocompleteInput optionText="name_rm" validate={required()} />
         </ReferenceInput>
         <input id="uploadfile" type='file' name='file' onChange={fileSelectHandler} />
         <button onClick={sendHandler}>Upload</button>
@@ -205,7 +205,7 @@ export const EpisodesCreate = () => {
         <TextInput source="image" defaultValue='files/22-7-video.jpg'  />
         {/* ocultar y requerir */}
         <NumberInput source="episode_number" validate={required()} min={1} />
-        <TextInput source="name_rm" validate={required()} />
+        <TextInput source="name_rm" label='Name' validate={required()} defaultValue='Episode' />
         <TextInput source="name_jp" />
         <TextInput source="name_en" />
         <TextInput source="format" validate={required()} />

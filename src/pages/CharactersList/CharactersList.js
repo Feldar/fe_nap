@@ -19,17 +19,17 @@ const CharactersList = (props) => {
     return <Character
       key={character.id}
       id={character.id}
+      image={character.image}
       name_rm={character.name_rm}
       name_jp={character.name_jp}
-      name_en={character.name_en}
-      file={character.file}
-      filename={character.filename}
-      image={character.image}
-      imagename={character.imagename}
-      start_date={character.start_date}
-      end_date={character.end_date}
-      episodes={character.episodes}
-      status={character.status}>
+      profile_page={character.profile_page}
+      twitter_account={character.twitter_account}
+      youtube_account={character.youtube_account}
+      color={character.color}
+      join_date={character.join_date}
+      graduation_date={character.graduation_date}
+      status={character.status}
+      artist_id={character.artist_id}>
     </Character>;
   }
 
@@ -110,6 +110,7 @@ const CharactersList = (props) => {
         </GeneroContext.Provider>
       </StatusContext.Provider> */}
       <div className="CharactersList container">
+        <div className='row text-center'><h1>CHARACTERS</h1></div>
         <div className='row'>
           {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
           filter(filtroStatus).sort(ordenarAlfabeticamente).map(showCharacter)} */}

@@ -35,7 +35,7 @@ export const TvshowsList = () => {
   const ImageName = () => {
     const record = useRecordContext();
     if(record.imagename){
-    return <FileField source="image" title="title" Label={record.imagename} />
+    return <FileField source="image" title={record.imagename} />
     }
     else {
       return <FileField source="image" title="title" Label="Image" />

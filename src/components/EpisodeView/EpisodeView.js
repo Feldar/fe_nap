@@ -29,17 +29,29 @@ const EpisodeView = (props) => {
   }
 
   return (
-    <div className="">
-      <figure className="">
-        <div>
-          <img className='border' src={imagePath()} alt='Personaje'></img>
-          <p>Episode {props.episode_number}</p>
-          <p>Type: {props.type}</p>
+    <div className="container">
+      <div className="row align-items-center">
+        <div className="col-12">
+          <figure>
+            <div>
+              <img className='border' src={imagePath()} alt='Personaje'></img>
+            </div>
+          </figure>
+        </div>
+        <div className="col-12">
+          <h3>Download information:</h3>
+        </div>
+        <div className="col-6">
+          <p>Episode: {props.episode_number}</p>
           <p>Format: {props.format}</p>
+          <p>resolution: {props.resolution}</p>
+          <p>duration: {props.duration}</p>
           <p>Release date: {props.release_date}</p>
+        </div>
+        <div className="col-6 text-right">
           <button onClick={download}>Download</button>
         </div>
-      </figure>
+      </div>
     </div>
   )
 };

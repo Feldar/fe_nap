@@ -1,25 +1,10 @@
 // import "./PersonajeCompleto.css"
 import axios from 'axios';
+import useScript from 'hooks/useScript';
+import './ArtistView.css'
 
 const ArtistView = (props) => {
-
-  const download = () => {
-    axios({
-      url: 'http://nananijiarchiveproject.test/api/download',
-      method: 'GET',
-      responseType: 'blob',
-      params: {
-        myFilePath: props.file
-      }
-    }).then(response => {
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', props.filename);
-      document.body.appendChild(link);
-      link.click();
-    })
-  }
+  useScript('https://platform.twitter.com/widgets.js');
 
   const filepath = () => {
     if (props.image) {
@@ -29,19 +14,38 @@ const ArtistView = (props) => {
   }
 
   return (
-    <div className="">
-      <figure className="">
-        <div>
-          <img className="border" src={filepath()} alt='artist'></img>
-          <p>Name Japanese: <span className="">{props.name_jp}</span></p>
-          <p>Name Romaji: <span className="">{props.name_rm}</span></p>
-          {!props.name_en ? '' : <p>Name English: <span className="">{props.name_en}</span></p>}
-          <p>Start date: <span className="">{props.start_date}</span></p>
-          <p>End date: {!props.end_date ? '-' : <span className="">{props.end_date}</span>}</p>
-          <p>Total episodes: <span className="">{props.episodes}</span></p>
-          <p>Status: <span className="">{props.status}</span></p>
+    <div className="container backgroundinfo infoborders">
+      <div className="row align-items-center">
+        <div className="col-4">
+          <figure className="">
+            <img className="artistimageborder" src={filepath()} alt='artist'></img>
+          </figure>
         </div>
-      </figure>
+        <div className="col-4 artistinfoborder text-center" style={{ 'backgroundColor': 'white' }}>
+          <h1 className="charactername" style={{ 'color': `${props.color}` }}>{props.name_jp} / {props.name_rm}</h1>
+          <p>
+            <span className="characterinfotitle"> Incorporation: </span>
+            <span className="">{props.join_date}</span>
+          </p>
+          {!props.graduation_date ? '' : <p>
+            <span className="characterinfotitle"> Graduation: </span>
+            <p>
+              <span className="characterinfotitle">Status: </span>
+              <span className="">{props.status}</span>
+            </p>
+            <span className="">{props.graduation_date}</span>
+          </p>}
+          <a href={props.profile_page}><p>Profile page</p></a>
+          {!props.blog ? '' : <a href={props.blog}><p>Blog</p></a>}
+          {!props.tiktok_account ? '' : <a href={props.tiktok_account}><p>Tiktok account</p></a>}
+          {!props.instagram_account ? '' : <a href={props.instagram_account}><p>Instagram account</p></a>}
+          {!props.youtube_account ? '' : <a href={props.youtube_account}><p>Youtube account</p></a>}
+
+        </div>
+        <div className="col-4">
+          <a className="twitter-timeline" href={props.twitter_account} data-tweet-limit="2"></a>
+        </div>
+      </div>
     </div>
   )
 };

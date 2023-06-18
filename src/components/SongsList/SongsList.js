@@ -16,6 +16,7 @@ const Songs = function (props) {
           setPage={setPage} 
           page={page} 
           album_id={props.album_id}
+          album_image={props.album_image}
         />
       }
     </div>

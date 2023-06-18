@@ -4,7 +4,6 @@ import imageLoader from 'images/22-7_Logo.png';
 import TvshowView from 'components/TvshowView/TvshowView';
 import AjaxLoader from 'components/AjaxLoader/AjaxLoader';
 import useTvshow from 'hooks/useTvshow';
-import Contacto from 'components/Landing/Contacto/contacto';
 import Footer from 'components/Landing/Footer/footer';
 import Header from 'components/Landing/Header/header';
 import Episodes from 'components/EpisodesList/EpisodesList';
@@ -29,11 +28,9 @@ const TvshowDetails = () => {
           start_date={tvshow.start_date}
           end_date={tvshow.end_date}
           episodes={tvshow.episodes}
-          status={tvshow.status}
-        >
+          status={tvshow.status}>
         </TvshowView>}
-        <Episodes tvshow_id={id} tvshow_image={tvshow.image} />
-      <Contacto />
+        <Episodes tvshow_id={id} tvshow_name={tvshow.name_rm} tvshow_image={tvshow.image} />
       <Footer />
     </div>
   )

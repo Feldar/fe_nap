@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const SongDetails = (props) => {
-    
+
   const download = () => {
     axios({
       url: 'http://nananijiarchiveproject.test/api/download',
@@ -22,25 +22,35 @@ const SongDetails = (props) => {
   }
 
   const imagePath = () => {
-    if (props.image) {
-      const path = `http://nananijiarchiveproject.test/${props.image}`;
+    if (props.album_image) {
+      const path = `http://nananijiarchiveproject.test/${props.album_image}`;
       return path;
     }
   }
   return (
 
-    <div className='col-xs-12 col-sm-6 col-md-4 col-xl-3 border d-flex justify-content-center'>
-      <figure className='figura'>
+      <div className='container border-top pt-3'>
+        <div className='row align-items-center'>
+          <div className='col-1 text-right'>
+            <p>{props.song_number}</p>
+          </div>
+          <div className='col-1'>
+            <figure>
+              <img className='border' src={imagePath()} alt='Personaje'></img>
+            </figure>
+          </div>
+          <div className='col-6'>
+            <p>{props.name_rm} / {props.name_jp}</p>
+          </div>
+          <div className='col-2 text-center'>
+            <p>Duration: {props.duration} min</p>
+          </div>
+          <div className='col-2 text-center'>
+            <button onClick={download}>Download</button>
+          </div>
+        </div>
+      </div>
 
-        <Link to={`/songs/${props.id}`}>
-          <img className='border' src={imagePath()} alt='Personaje'></img>
-        </Link>
-        <figcaption className='figura'>{props.name_rm} | {props.name_jp}</figcaption>
-        <p>{props.name_rm} | {props.start_date} | {props.episodes}</p>
-        <p>Start date {props.start_date}</p>
-        <p>Episodes: {props.episodes}</p>
-      </figure>
-    </div>
   )
 };
 

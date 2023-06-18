@@ -4,7 +4,6 @@ import imageLoader from 'images/22-7_Logo.png';
 import SongView from 'components/SongView/SongView';
 import AjaxLoader from 'components/AjaxLoader/AjaxLoader';
 import useSong from 'hooks/useSong';
-import Contacto from 'components/Landing/Contacto/contacto';
 import Footer from 'components/Landing/Footer/footer';
 import Header from 'components/Landing/Header/header';
 
@@ -33,7 +32,6 @@ const SongDetails = () => {
           image={song.image}
           imagename={song.imagename}>
         </SongView>}
-      <Contacto />
       <Footer />
     </div>
   )

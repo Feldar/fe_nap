@@ -22,17 +22,11 @@ const SongsList = (props) => {
         song_number={song.song_number}
         name_rm={song.name_rm}
         name_jp={song.name_jp}
-        name_en={song.name_en}
-        format={song.format}
-        resolution={song.resolution}
-        release_date={song.release_date}
-        type={song.type}
         duration={song.duration}
+        album_id={song.album_id}
+        album_image={props.album_image}
         file={song.file}
-        filename={song.filename}
-        image={song.image}
-        imagename={song.imagename}
-        tvshow_id={props.tvshow_id}>
+        filename={song.filename}>
       </Song>;
     }
   }
@@ -99,8 +93,10 @@ const SongsList = (props) => {
   }
 
   return (
-    <div>
-      <h1>EPISODES</h1>
+    <div className='container backgroundinfo'>
+      <div className='row align-items-center border-top'>
+        <h1>SONGS</h1>
+      </div>
       {/* <BotonesPaginas manejarCambioPaginas={manejarCambioPaginas} pagina={props.pagina}></BotonesPaginas>
       <StatusContext.Provider value={manejarSeleccionStatus}>
         <GeneroContext.Provider value={manejarSeleccionGenero}>
@@ -111,12 +107,10 @@ const SongsList = (props) => {
           </EspecieContext.Provider>
         </GeneroContext.Provider>
       </StatusContext.Provider> */}
-      <div className="SongsList container">
-        <div className='row row-cols-3'>
-          {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
-          filter(filtroStatus).sort(ordenarAlfabeticamente).map(showTvshow)} */}
-          {props.songsList.map(showSong)}
-        </div>
+      <div className='row align-items-center SongsList'>
+        {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
+            filter(filtroStatus).sort(ordenarAlfabeticamente).map(showTvshow)} */}
+        {props.songsList.map(showSong)}
       </div>
     </div>
   )

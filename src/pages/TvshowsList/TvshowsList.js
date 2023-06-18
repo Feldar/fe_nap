@@ -110,6 +110,7 @@ const TvshowsList = (props) => {
         </GeneroContext.Provider>
       </StatusContext.Provider> */}
       <div className="TvshowsList container">
+        <div className='row text-center'><h1>TV SHOWS</h1></div>
         <div className='row'>
           {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
           filter(filtroStatus).sort(ordenarAlfabeticamente).map(showTvshow)} */}

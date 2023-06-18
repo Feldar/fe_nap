@@ -29,19 +29,44 @@ const TvshowView = (props) => {
   }
 
   return (
-    <div className="">
-      <figure className="">
-        <div>
-          <img className="border" src={filepath()} alt='tvshow'></img>
-          <p>Name Japanese: <span className="">{props.name_jp}</span></p>
-          <p>Name Romaji: <span className="">{props.name_rm}</span></p>
-          {!props.name_en ? '' : <p>Name English: <span className="">{props.name_en}</span></p>}
-          <p>Start date: <span className="">{props.start_date}</span></p>
-          <p>End date: {!props.end_date ? '-' : <span className="">{props.end_date}</span>}</p>
-          <p>Total episodes: <span className="">{props.episodes}</span></p>
-          <p>Status: <span className="">{props.status}</span></p>
+    <div className="container backgroundinfo infoborders">
+      <div className="row align-items-center">
+        <div className="col-4 pt-3">
+          <figure className="">
+            <img className="artistimageborder" src={filepath()} alt='tvshow'></img>
+          </figure>
         </div>
-      </figure>
+        <div className="col-8 tvshowsborder text-center" style={{ 'backgroundColor': 'white' }}>
+          <p>
+            <span className="characterinfotitle"> Name Japanese: </span>
+            <span className="">{props.name_jp}</span>
+          </p>
+          <p>
+            <span className="characterinfotitle"> Name Romaji: </span>
+            <span className="">{props.name_rm}</span>
+          </p>
+          {!props.name_en ? '' : <p>
+            <span className="characterinfotitle"> Name English: </span>
+            <span className="">{props.name_en}</span>
+          </p>}
+          <p>
+            <span className="characterinfotitle"> Start date: </span>
+            <span className="">{props.start_date}</span>
+          </p>
+          {!props.end_date ? '' : <p>
+            <span className="characterinfotitle"> End date: </span>
+            <span className="">{props.end_date}</span>
+          </p>}
+          <p>
+            <span className="characterinfotitle"> Total episodes: </span>
+            <span className="">{props.episodes}</span>
+          </p>
+          <p>
+            <span className="characterinfotitle"> Status: </span>
+            <span className="">{props.status}</span>
+          </p>
+        </div>
+      </div>
     </div>
   )
 };

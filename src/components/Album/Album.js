@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const AlbumDetails = (props) => {
-    
+
   const download = () => {
     axios({
       url: 'http://nananijiarchiveproject.test/api/download',
@@ -28,18 +28,26 @@ const AlbumDetails = (props) => {
     }
   }
   return (
-
-    <div className='col-xs-12 col-sm-6 col-md-4 col-xl-3 border d-flex justify-content-center'>
-      <figure className='figura'>
-
-        <Link to={`/albums/${props.id}`}>
-          <img className='border' src={imagePath()} alt='Personaje'></img>
-        </Link>
-        <figcaption className='figura'>{props.name_rm} | {props.name_jp}</figcaption>
-        <p>{props.name_rm} | {props.start_date} | {props.episodes}</p>
-        <p>Start date {props.start_date}</p>
-        <p>Episodes: {props.episodes}</p>
-      </figure>
+    <div className='col-xs-12 col-sm-6 col-md-4 col-xl-3 border 
+    image-container pt-3 mt-2 text-center listborders'
+      style={{ backgroundColor: '#a0d8e5a2' }}>
+      <Link to={`/albums/${props.id}`}>
+        <img className='ml-auto mr-auto' src={imagePath()} alt='Personaje'></img>
+      </Link>
+      <Link to={`/albums/${props.id}`}>
+        <div className="text-overlay">
+          <div className="text-overlay-content">
+            <p className='frame'>{props.name_rm} / {props.name_jp}</p>
+          </div>
+        </div>
+      </Link>
+      <div className='pt-3'>
+        <p style={{
+          'color': 'white',
+          'textShadow': '2px 2px #00000083',
+          'fontWeight': 'bold'
+        }} >{props.name_rm} / {props.name_jp}</p>
+      </div>
     </div>
   )
 };

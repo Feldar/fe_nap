@@ -1,7 +1,10 @@
 // import "./PersonajeCompleto.css"
 import axios from 'axios';
+import useScript from 'hooks/useScript';
+import './CharacterView.css';
 
 const CharacterView = (props) => {
+  useScript('https://platform.twitter.com/widgets.js');
 
   const download = () => {
     axios({
@@ -29,19 +32,44 @@ const CharacterView = (props) => {
   }
 
   return (
-    <div className="">
-      <figure className="">
-        <div>
-          <img className="border" src={filepath()} alt='character'></img>
-          <p>Name Japanese: <span className="">{props.name_jp}</span></p>
-          <p>Name Romaji: <span className="">{props.name_rm}</span></p>
-          {!props.name_en ? '' : <p>Name English: <span className="">{props.name_en}</span></p>}
-          <p>Start date: <span className="">{props.start_date}</span></p>
-          <p>End date: {!props.end_date ? '-' : <span className="">{props.end_date}</span>}</p>
-          <p>Total episodes: <span className="">{props.episodes}</span></p>
-          <p>Status: <span className="">{props.status}</span></p>
+    <div className="container backgroundinfo infoborders">
+      <div className="row align-items-center">
+        <div className="col-4 characterinfoborder text-center" style={{ 'backgroundColor': 'white'}}>
+          <h1 className="charactername" style={{ 'color': `${props.color}`}}>{props.name_jp} <br/> {props.name_rm}</h1>
+          <p>
+            <span className="characterinfotitle">Character color: </span>
+            <span>{props.color} </span>
+            <span style={{ 'color': `${props.color}` }}>⬤</span>
+          </p>
+          <p>
+            <span className="characterinfotitle">Incorporation: </span>
+            <span className="">{props.join_date}</span>
+          </p>
+          <p>
+            <span className="characterinfotitle"> Status: </span>
+            {props.status}
+          </p>
+          {!props.graduation_date ? '' : <p>
+          <span className="characterinfotitle"> Graduation: </span>
+          <span className="">{props.graduation_date}</span>
+          </p>}
+          <a href={props.profile_page}><p>Profile page</p></a>
+          {!props.youtube_account ? '' : <a href={props.youtube_account}><p>Youtube account</p></a>}
         </div>
-      </figure>
+
+        <div className="col-4 ">
+          <figure>
+            <img src={filepath()} alt='artist'></img>
+          </figure>
+        </div>
+
+        <div className="col-4">
+        <a className="twitter-timeline" href={props.twitter_account} data-tweet-limit="2"></a>
+        </div>
+      </div>
+      <div className="row alaign-items-center">
+      
+      </div>
     </div>
   )
 };

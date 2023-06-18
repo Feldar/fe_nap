@@ -1,0 +1,13 @@
+.artistinfoborder{
+    border-radius: 15px 15px 15px 15px ;
+    box-shadow: 5px 10px #888888;
+}
+
+.artistimageborder{
+    border-radius: 15px 15px 15px 15px ;
+}
+
+.tvshowsborder{ 
+    border-radius: 15px 0px 0px 15px;
+    box-shadow: -5px 10px #888888;
+}

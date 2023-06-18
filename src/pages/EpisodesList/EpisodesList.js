@@ -32,7 +32,8 @@ const EpisodesList = (props) => {
         filename={episode.filename}
         image={episode.image}
         imagename={episode.imagename}
-        tvshow_id={props.tvshow_id}>
+        tvshow_id={props.tvshow_id}
+        tvshow_name={props.tvshow_name}>
       </Episode>;
     }
   }
@@ -99,8 +100,10 @@ const EpisodesList = (props) => {
   }
 
   return (
-    <div>
-      <h1>EPISODES</h1>
+    <div className='container backgroundinfo'>
+      <div className='row align-items-center border-top'>
+        <h1>EPISODES</h1>
+      </div>
       {/* <BotonesPaginas manejarCambioPaginas={manejarCambioPaginas} pagina={props.pagina}></BotonesPaginas>
       <StatusContext.Provider value={manejarSeleccionStatus}>
         <GeneroContext.Provider value={manejarSeleccionGenero}>
@@ -111,12 +114,10 @@ const EpisodesList = (props) => {
           </EspecieContext.Provider>
         </GeneroContext.Provider>
       </StatusContext.Provider> */}
-      <div className="EpisodesList container">
-        <div className='row row-cols-3'>
-          {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
+      <div className='row align-items-center EpisodesList'>
+        {/* {props.listaPersonajes.filter(filtroEspecie).filter(filtroGenero).
           filter(filtroStatus).sort(ordenarAlfabeticamente).map(showTvshow)} */}
-          {props.episodesList.map(showEpisode)}
-        </div>
+        {props.episodesList.map(showEpisode)}
       </div>
     </div>
   )

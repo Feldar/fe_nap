@@ -13,7 +13,8 @@ import {
   DateInput,
   DateField,
   SelectInput,
-  required
+  required,
+  FileField
 } from 'react-admin';
 
 import { useRecordContext } from 'react-admin';
@@ -42,7 +43,7 @@ export const ArtistsList = () => {
         </SimpleList>
       ) : (
         <Datagrid bulkActionButtons={false} rowClick="edit">
-          <ImageField source="image" title='title' />
+          <FileField source="image" title='Image' />
           <TextField source="name_rm" />
           <TextField source="name_jp" />
           <TextField source="profile_page" />
@@ -68,7 +69,7 @@ const ArtistsTitle = () => {
 export const ArtistsShow = () => (
   <Show title={<ArtistsTitle />} disableAuthentication>
     <SimpleForm>
-      <ImageField source="image" title='title' />
+      <FileField source="image" title='Image' />
       <TextField source="name_rm" />
       <TextField source="name_jp" />
       <TextField source="profile_page" />
